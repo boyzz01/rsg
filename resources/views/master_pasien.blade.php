@@ -101,7 +101,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                                 <div class="card-body">
                                     <!--begin: Datatable-->
-                                    <table class="table table-bordered table-checkable" id="kt_datatable">
+                                    <table class="table table-bordered table-checkable " id="kt_datatable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>

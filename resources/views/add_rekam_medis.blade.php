@@ -81,15 +81,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <form action="" name="form1" autocomplete="off">
+                                    <form action="{{ url('/') }}/tambahodontogram" name="form1" autocomplete="off">
+                                        {{ csrf_field() }}
                                         <div class="form-group row">
                                             <label class="col-2 col-form-label">Pilih Kondisi Gigi</label>
                                             <div class="col-10">
-                                                <select class="form-control" required>
+                                                <select class="form-control" name="kondisi" required>
                                                     <option value="">Pilih Kondisi Gigi</option>
-                                                    @foreach ( $datagigi as $data )
-                                                    <option value="{{ $data->id }}">({{ $data->singkatan }}) {{
-                                                        $data->kondisi }}</option>
+                                                    @foreach ( $datagigi as $d )
+                                                    <option value="{{ $d->id}}">({{
+                                                        $d->singkatan }}) {{
+                                                        $d->kondisi }}</option>
                                                     @endforeach
 
 
@@ -97,12 +99,96 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
 
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-2 col-form-label">Anamnesa</label>
+                                            <div class="col-10">
+                                                <input class="form-control" type="text" name="anamnesa" value=""
+                                                    id="anamnesa" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-2 col-form-label">Tindakan</label>
+                                            <div class="col-10">
+                                                <input class="form-control" type="text" name="tindakan" value=""
+                                                    id="tindakan" required />
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="pemeriksa" value="{{ session()->get('nama') }}" />
+                                        <input type="hidden" name="gigi" value="{{ $idgigi }}" />
+                                        <input type="hidden" name="id_pasien" value="{{ $biodata->id }}" />
 
                                 </div>
                                 <div class="card-footer">
-                                    <button type="Submit" name="Submit" class="btn btn-primary">Simpan Data</button>
+                                    <button type="Submit" name="Submit" class="btn btn-primary">Simpan
+                                        Data</button>
                                     <button type="reset" class="btn btn-secondary">Cancel</button>
                                 </div>
+                                </form>
+                            </div>
+
+                            <br>
+
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap py-5">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Riwayat Pemeriksaan Gigi {{ $idgigi }} Sebelumnya
+                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
+                                        </h3>
+                                    </div>
+                                    <div class="card-toolbar">
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-checkable" id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tanggal</th>
+                                                <th>Gigi</th>
+                                                <th>Kondisi</th>
+                                                <th>Anamnesa</th>
+                                                <th>Tindakan</th>
+                                                <th>Pemeriksa</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @php
+                                            $nomor = 1;
+                                            @endphp
+                                            @foreach ($data as $d)
+                                            <tr id="tr{{$d->id}}">
+                                                <td style=" width:5%">{{ $nomor }}</td>
+
+                                                <td>{{ $d->tanggal }}</td>
+                                                <td>{{ $d->gigi }}</td>
+
+                                                <td><span style="background-color:{{ $d->warna }}">&nbsp;
+                                                        &nbsp;&nbsp;</span> {{
+                                                    $d->kondisi }}({{ $d->singkatan }})</td>
+                                                <td>{{ $d->anamnesa }}</td>
+                                                <td>{{ $d->tindakan }}</td>
+                                                <td>{{ $d->pemeriksa }}</td>
+
+
+                                            </tr>
+
+                                            @php
+                                            $nomor++;
+                                            @endphp
+                                            @endforeach
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
                                 </form>
                             </div>
                         </div>

@@ -89,8 +89,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a></div>
                                 </div>
                                 <div class="col-lg-4 mb-4">
-                                    <div class="card bg-primary"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
+                                    <div class="card bg-primary"><a href="{{ url('/') }}/antrian">
                                             <div class="card-body text-center">
                                                 <h3 style="color:white">Ambil Antrian</h3>
                                             </div>

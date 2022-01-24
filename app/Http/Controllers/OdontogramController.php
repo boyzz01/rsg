@@ -10,12 +10,17 @@ class OdontogramController extends Controller
     
     function index($id){
 
-        $data =DB::table('odontogram_pasien')->where('id_pasien','=',$id)->first();
+        $data =DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram WHERE odontogram_pasien.kondisi = master_simbol_odontogram.id AND odontogram_pasien.id IN (SELECT MAX(odontogram_pasien.id) FROM odontogram_pasien GROUP BY gigi)");
         $biodata =DB::table('biodata_pasien')->where('id','=',$id)->first();
-        return view('odontogram_pasien',['data'=>$data,'biodata'=>$biodata]);
+        $dataall =DB::table('odontogram_pasien')->join('master_simbol_odontogram','odontogram_pasien.kondisi','=','master_simbol_odontogram.id')->where('id_pasien','=',$id)->orderByDesc('odontogram_pasien.id')->get()->toArray(); 
+        return view('odontogram_pasien',['data'=>$data,'biodata'=>$biodata,'dataall'=>$dataall]);
     }
 
-    function getNamaSimbol(){
-        
+    function getsimbol($warna){
+
+       
+        // $data =DB::table('master_simbol_odontogram')->where('warna','=',$warna)->first();
+        // return $data;
+        return $warna;
     }
 }

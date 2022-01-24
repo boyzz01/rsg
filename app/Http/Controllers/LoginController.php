@@ -35,7 +35,8 @@ class LoginController extends Controller
             session()->put('level', $user->level);
             session()->put('nama', $user->nama);
             session()->put('username', $user->username);
-            return redirect()->route('dashboard.index');
+            return redirect("/");
+            
         }
 
   

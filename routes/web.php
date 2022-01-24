@@ -30,10 +30,14 @@ Route::post('/checkLogin', [LoginController::class, 'check']);
 Route::resource('/pasien',DataPasienController::class);
 Route::resource('/simbol',SimbolOdontogramController::class);
 Route::get('/odontogram/{id}', [OdontogramController::class, 'index']);
+Route::get('/getsimbol', [OdontogramController::class, 'getsimbol']);
 Route::get('/addrekammedis/{idpasien}/{idgigi}', [AddRekamMedisController::class, 'index']);
+Route::get('/tambahodontogram', [AddRekamMedisController::class, 'tambah']);
+Route::get('/antrian', [AntrianController::class, 'index']);
+Route::get('/addantrian', [AntrianController::class, 'addantrian']);
 
 
 Route::get('/update_pasien/{id}', [StatusController::class, 'updatestatus']);
-Route::resource('/antrian', AntrianController::class);
+
 
 Route::get('/pasien/{id}' , [PasienController::class, 'index']);

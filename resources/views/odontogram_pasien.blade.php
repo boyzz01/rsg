@@ -107,8 +107,71 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             </div>
                             <br>
-                            {{-- @include('pemeriksaan_oral') --}}
+                            @include('pemeriksaan_oral')
 
+                            <br>
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap py-5">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Riwayat Pemeriksaan
+                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
+                                        </h3>
+                                    </div>
+                                    <div class="card-toolbar">
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-checkable" id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tanggal</th>
+                                                <th>Gigi</th>
+                                                <th>Kondisi</th>
+                                                <th>Anamnesa</th>
+                                                <th>Tindakan</th>
+                                                <th>Pemeriksa</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @php
+                                            $nomor = 1;
+                                            @endphp
+                                            @foreach ($dataall as $d)
+                                            <tr id="tr{{$d->id}}">
+                                                <td style=" width:5%">{{ $nomor }}</td>
+
+                                                <td>{{ $d->tanggal }}</td>
+                                                <td>{{ $d->gigi }}</td>
+
+                                                <td><span style="background-color:{{ $d->warna }}">&nbsp;
+                                                        &nbsp;&nbsp;</span> {{
+                                                    $d->kondisi }}({{ $d->singkatan }})</td>
+                                                <td>{{ $d->anamnesa }}</td>
+                                                <td>{{ $d->tindakan }}</td>
+                                                <td>{{ $d->pemeriksa }}</td>
+
+
+                                            </tr>
+
+                                            @php
+                                            $nomor++;
+                                            @endphp
+                                            @endforeach
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                </form>
+                            </div>
 
 
                         </div>
@@ -233,38 +296,45 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/js/sb-admin-2.min.js"></script>
-    {{-- <script src="assets/js/pages/features/cards/tools.js"></script> --}}
+    <script src="assets/js/pages/features/cards/tools.js"></script>
 
     <script>
         $(document).ready(function () {
         var warna = 'navy';
+        var ket = "--"
         $('polygon').attr('stroke', warna);
+        $('polygon').attr('data-ket', ket);
         $('text').attr('stroke', warna);
         $('text').attr('fill', warna);
 
+        var tes = document.getElementById('18');
+        var temp = tes.querySelector('#C');
+        temp.style.fill ="red";
+     
+       var data =@json($data);
+    
+      
+        for(var i=0;i<data.length;i++){
+            var gigi = data[i]['gigi'].split("-");
+            var tes = document.getElementById(gigi[0]);
+            var temp = tes.querySelector('#'+gigi[1]);
+            temp.style.fill =data[i]['warna'];
+            temp.setAttribute('data-ket', data[i]['kondisi']+'('+data[i]['singkatan']+')');
+        }
     $('polygon').mouseover(function (evt) {
       //  var svg = $('#svgselect').svg('get');
         var sector = $(evt.target);
         var gigi = sector.attr('id');
         var warna = sector.attr('fill');
         var nomor = sector.parent().attr('id');
+        var kondisi = sector.attr('data-ket');
+        var urlb = '{{ url('/') }}';
         $('#nomorgigi').html(nomor);
         $('#posisigigi').html(gigi);
         $('#kposisi').html(nomor+'-'+gigi);
-        // $.ajax({
-        //     type : "POST",
-        //     url  : {{ url('/') }}+"/medis/getnamasimbol",
-        //     dataType : "JSON",
-        //     data : {warna: warna},
-        //     cache:false,
-        //     success: function(data){
-        //     $('#kondisi-gigi').html(data.nama+' ('+data.singkatan+')');
-        //     },
-        //     error: function(jqXHR, textStatus, errorThrown){
-        //     $('#kondisi-gigi').html('Data tidak ditemukan');
-        //     }
-
-        // })
+        
+        $('#kondisi-gigi').html(kondisi);
+    
     });
 
     $('polygon').mouseout(function (evt) {
@@ -278,46 +348,10 @@ License: You must have a valid license purchased only from themeforest(the above
       const idpasien = {{ $biodata->id }};
       var baseurl = '{{ url('') }}';
       var sector = $(evt.target);
-      var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id');
-    
+      var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
       window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
     });
-    // $('polygon').mouseover(function (evt) {
-    //   var svg = $('#svgselect').svg('get');
-    //   var sector = $(evt.target);
-    //   var gigi = sector.attr('id');
-    // //  var warna = sector.attr('fill');
-    //   var nomor = sector.parent().attr('id');
-    //   $.ajax({
-    //       type : "POST",
-    //       url  : baseurl+"/medis/getnamasimbol",
-    //       dataType : "JSON",
-    //       data : {warna: warna},
-    //       cache:false,
-    //     success: function(data){
-    //       $('#kondisi-gigi').html(data.nama+' ('+data.singkatan+')');
-    //     },
-    //     error: function(jqXHR, textStatus, errorThrown){
-    //       $('#kondisi-gigi').html('Data tidak ditemukan');
-    //     }
 
-    //   })
-    //   $('#nomorgigi').html(nomor);
-    //   $('#posisigigi').html(gigi);
-    //   $('#kposisi').html(nomor+'-'+gigi);
-    // });
-    // $('polygon').mouseout(function (evt) {
-    //   $('#nomorgigi').html('XX');
-    //   $('#posisigigi').html('X');
-    //   $('#kondisi-gigi').html('--');
-    //   $('#kposisi').html('');
-    // });
-    // $('polygon').click(function (evt) {
-    //   const idpasien = $('.id-pasien').data('id');
-    //   var sector = $(evt.target);
-    //   var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id');
-    //   window.location.href = baseurl+'medis/addrekammedis/'+idpasien+'/'+posisigigi+'.html';
-    // });
 });
     </script>
 </body>

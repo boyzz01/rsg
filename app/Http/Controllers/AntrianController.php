@@ -2,95 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antrian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AntrianController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    function index(){
+        $data =DB::table('biodata_pasien')->get();
+        $antrian =DB::table('antrian_pasien')->join('biodata_pasien','biodata_pasien.id','=','antrian_pasien.id_pasien')->get();
+        return view('antrian',['data'=>$data,'antrian'=>$antrian]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    function addantrian(Request $request){
+
+        $user = DB::table('antrian_pasien')->where('id_pasien','=',$request->id_pasien)->first();
+        if ($user === null) {
+            Antrian::create($request->all());
+            return redirect()->back()
+            ->with('success','Data berhasil ditambahkan');
+        }else{
+            return redirect()->back()
+            ->with('error','Pasien sudah dalam antrian');
+        }
+        // $tgl = explode('/', $request->tgl_lahir);
+        // $request['tgl_lahir'] = $tgl[2].'-'.$tgl[0].'-'.$tgl[1];
+        /// redirect jika sukses menyimpan data
+       
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store($id)
-    {
-
-
-        DB::insert('insert into antrian_pasien
-        (id_pasien,mulai_antri,status)  values 
-        (?,?,?)',[$id,date('Y-m-d H:m:s'),'1']);
-
-        DB::update('update biodata_pasien set status_antrian="1" where id = '
-        .$id.'');
-
-        return redirect()->back()
-        ->with('success','Pasien masuk antrian');
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
 }
