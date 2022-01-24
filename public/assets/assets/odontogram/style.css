@@ -1,0 +1,37 @@
+#camada1Odontograma {
+    z-index: 1;
+}
+
+#camada2Odontograma {
+    z-index: 2;
+}
+
+#camada3Odontograma {
+    z-index: 3;
+}
+
+#camada4Odontograma {
+    z-index: 4;
+}
+
+#camadaPincel {
+    z-index: 3;
+}
+
+canvas {
+    position: absolute;
+    border: 1px solid #9C9898;
+    margin: 10px;
+}
+
+.checked {
+    display: none;
+}
+
+.active .checked {
+    display: inline-block;
+}
+
+.active .unchecked {
+    display: none;
+}

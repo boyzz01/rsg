@@ -1,10 +1,11 @@
 <section>
 
-    @include('alert')
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <form action="{{ route('pasien.store') }}" method="post" name="form1" autocomplete="off">
+
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <form action="{{ route('pasien.update',1    ) }}" method="post" id="editform" name="form1" autocomplete="off">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 700px;">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -13,16 +14,17 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i aria-hidden="true" class="ki ki-close"></i>
                         </button>
+
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id='id' name="id">
+                        <input type="hidden" id='idpasien' name="id">
                         <input type="hidden" id='tgl_kunjungan' name="tgl_kunjungan" value="{{ date('Y-m-d H:m:s') }}">
 
                         <div class="card-body">
 
                             <div class="form-group">
                                 <label class="col-form-label">Nama Pasien</label>
-                                <input type="text" class="form-control form-control-normal" name="nama" id="nikpeserta"
+                                <input type="text" class="form-control form-control-normal" name="nama" id="namapasien"
                                     placeholder="Nama Pasien" required />
                             </div>
 
@@ -30,8 +32,8 @@
                                 <label class="col-form-label">Tanggal Lahir</label>
 
                                 <div class="input-group date">
-                                    <input type="text" class="form-control form-control-normal"
-                                        placeholder="Select date" id="kt_datepicker_3" name="tgl_lahir" required />
+                                    <input type="text" class="form-control form-control-normal picker"
+                                        placeholder="Select date" id="kt_datepicker_2" name="tgl_lahir" required />
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-calendar-check-o"></i>
@@ -41,21 +43,23 @@
 
                             </div>
 
+
+
                             <div class="form-group">
                                 <label class="col-form-label">Pekerjaan</label>
                                 <input type="text" class="form-control form-control-normal" name="pekerjaan"
-                                    id="pekerjaan" placeholder="Nama Pasien" required />
+                                    id="pekerjaan" id="pekerjaan" placeholder="Pekerjaan" required />
                             </div>
 
                             <div class="form-group">
                                 <label class="col-form-label">Alamat</label>
-                                <input type="text" class="form-control form-control-normal" name="alamat"
+                                <input type="text" class="form-control form-control-normal" name="alamat" id="alamat"
                                     id="nikpeserta" placeholder="Alamat" required />
                             </div>
 
                             <div class="form-group">
                                 <label class="col-form-label">Nomor HP</label>
-                                <input type="text" class="form-control form-control-normal" name="hp" id="nikpeserta"
+                                <input type="text" class="form-control form-control-normal" name="hp" id="hp"
                                     placeholder="Nomor HP" required />
                             </div>
 
@@ -65,10 +69,10 @@
                             <div class="form-group">
                                 <label for="jk">Jenis Kelamin</label>
                                 <fieldset id="group1">
-                                    <input type="radio" value="Laki-Laki" name="jk" id="pria" required> <label
-                                        for="pria">Laki-Laki</label>
-                                    <input type="radio" value="Perempuan" name="jk" id="wanita"
-                                        style="margin-left:20px"> <label for="wanita">Perempuan</label>
+                                    <input type="radio" value="Laki-Laki" name="jk" id="check1" required> <label
+                                        for="check1">Laki-Laki</label>
+                                    <input type="radio" value="Perempuan" name="jk" id="check2"
+                                        style="margin-left:20px"> <label for="check2">Perempuan</label>
                                 </fieldset>
                             </div>
 
@@ -83,9 +87,12 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="Submit" name="Submit" class="btn btn-primary">Simpan Data</button>
+                        <button type="Submit" name="Submit" class="btn btn-primary">Update Data</button>
                     </div>
         </form>
     </div>
+
+
+
 
 </section>

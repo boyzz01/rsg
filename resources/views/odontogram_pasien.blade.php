@@ -15,7 +15,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
-    <base href="./public/assets/">
+
+    <base href="../public/assets/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -66,8 +67,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
-
-                            <H3>Dashboard</H3>
+                            Odontogram Pasien {{ $biodata->id }} / {{ $biodata->nama }}
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
@@ -76,45 +76,15 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <!--end::Subheader-->
                     <!--begin::Entry-->
+
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
                         <div class="container">
 
-                            <div class="row">
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-success"><a href="{{ url('/') }}/pasien">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pasien</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-primary"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Ambil Antrian</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-danger"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pemeriksaan</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-
-                            </div>
-
-
-
                             <div class="card card-custom" id="kt_card_3">
                                 <div class="card-header">
                                     <div class="card-title">
-
-                                        <h3 class="card-label">Daftar Kunjungan Pasien {{ $now->format('F')}}
-                                            {{ $now->year }}</h3>
+                                        <h3 class="card-label">Odontogram</h3>
                                     </div>
                                     <div class="card-toolbar">
                                         <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
@@ -125,76 +95,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-separate table-head-custom table-checkable"
-                                        id="kt_datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Faktur</th>
-                                                <th>Tanggal</th>
-                                                <th>Keluhan</th>
-                                                <th>Pemeriksa</th>
-
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
 
 
-                                            @php
-                                            $nomor = 1;
-                                            @endphp
-                                            @foreach ($data as $d)
-                                            <tr>
-                                                <td style="width:5%">{{ $nomor }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->tgl_kunjungan }}</td>
-                                                <td>{{ $d->jk }}</td>
-                                                <td>{{ $d->hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
+                                    @include('odontogram')
 
-                                                <td nowrap="nowrap">
-                                                    <form action="{{ route('dashboard.destroy', $d->id) }}"
-                                                        method="POST">
-                                                        <div class="dropdown dropdown-inline">
-                                                            <a href="../../update_pasien/{{ $d->id }}"
-                                                                class=" btn btn-sm btn-success btn-icon"
-                                                                title="Masukkan Ke Antrian">
-                                                                <i class="la la-hourglass"></i>
-                                                            </a>
-
-                                                        </div>
-                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
-                                                            title="Edit Data Pasien">
-                                                            <i class="la la-edit"></i>
-                                                        </a>
-
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class="la la-trash">
-                                                            </i>
-
-                                                    </form>
-                                                </td>
-                                            </tr>
-
-                                            @php
-                                            $nomor++;
-                                            @endphp
-                                            @endforeach
-
-
-
-
-                                        </tbody>
-                                    </table>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="reset" class="btn btn-primary mr-2">Simpan</button>
+                                    <button type="reset" class="btn btn-secondary">Cancel</button>
                                 </div>
 
                             </div>
+                            <br>
+                            {{-- @include('pemeriksaan_oral') --}}
+
+
 
                         </div>
                         <!--end::Container-->
@@ -302,7 +217,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Page Vendors(used by this page)-->
     <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-    <script src="assets/plugins/custom/gmaps/gmaps.js"></script>
+
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
     <script src="assets/js/pages/widgets.js"></script>
@@ -315,6 +230,96 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
     <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
     <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
+
+    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/js/sb-admin-2.min.js"></script>
+    {{-- <script src="assets/js/pages/features/cards/tools.js"></script> --}}
+
+    <script>
+        $(document).ready(function () {
+        var warna = 'navy';
+        $('polygon').attr('stroke', warna);
+        $('text').attr('stroke', warna);
+        $('text').attr('fill', warna);
+
+    $('polygon').mouseover(function (evt) {
+      //  var svg = $('#svgselect').svg('get');
+        var sector = $(evt.target);
+        var gigi = sector.attr('id');
+        var warna = sector.attr('fill');
+        var nomor = sector.parent().attr('id');
+        $('#nomorgigi').html(nomor);
+        $('#posisigigi').html(gigi);
+        $('#kposisi').html(nomor+'-'+gigi);
+        // $.ajax({
+        //     type : "POST",
+        //     url  : {{ url('/') }}+"/medis/getnamasimbol",
+        //     dataType : "JSON",
+        //     data : {warna: warna},
+        //     cache:false,
+        //     success: function(data){
+        //     $('#kondisi-gigi').html(data.nama+' ('+data.singkatan+')');
+        //     },
+        //     error: function(jqXHR, textStatus, errorThrown){
+        //     $('#kondisi-gigi').html('Data tidak ditemukan');
+        //     }
+
+        // })
+    });
+
+    $('polygon').mouseout(function (evt) {
+      $('#nomorgigi').html('XX');
+      $('#posisigigi').html('X');
+      $('#kondisi-gigi').html('--');
+      $('#kposisi').html('');
+    });
+
+      $('polygon').click(function (evt) {
+      const idpasien = {{ $biodata->id }};
+      var baseurl = '{{ url('') }}';
+      var sector = $(evt.target);
+      var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id');
+    
+      window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
+    });
+    // $('polygon').mouseover(function (evt) {
+    //   var svg = $('#svgselect').svg('get');
+    //   var sector = $(evt.target);
+    //   var gigi = sector.attr('id');
+    // //  var warna = sector.attr('fill');
+    //   var nomor = sector.parent().attr('id');
+    //   $.ajax({
+    //       type : "POST",
+    //       url  : baseurl+"/medis/getnamasimbol",
+    //       dataType : "JSON",
+    //       data : {warna: warna},
+    //       cache:false,
+    //     success: function(data){
+    //       $('#kondisi-gigi').html(data.nama+' ('+data.singkatan+')');
+    //     },
+    //     error: function(jqXHR, textStatus, errorThrown){
+    //       $('#kondisi-gigi').html('Data tidak ditemukan');
+    //     }
+
+    //   })
+    //   $('#nomorgigi').html(nomor);
+    //   $('#posisigigi').html(gigi);
+    //   $('#kposisi').html(nomor+'-'+gigi);
+    // });
+    // $('polygon').mouseout(function (evt) {
+    //   $('#nomorgigi').html('XX');
+    //   $('#posisigigi').html('X');
+    //   $('#kondisi-gigi').html('--');
+    //   $('#kposisi').html('');
+    // });
+    // $('polygon').click(function (evt) {
+    //   const idpasien = $('.id-pasien').data('id');
+    //   var sector = $(evt.target);
+    //   var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id');
+    //   window.location.href = baseurl+'medis/addrekammedis/'+idpasien+'/'+posisigigi+'.html';
+    // });
+});
+    </script>
 </body>
 <!--end::Body-->
 

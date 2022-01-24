@@ -67,7 +67,6 @@ License: You must have a valid license purchased only from themeforest(the above
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
 
-                            <H3>Dashboard</H3>
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
@@ -80,121 +79,73 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--begin::Container-->
                         <div class="container">
 
-                            <div class="row">
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-success"><a href="{{ url('/') }}/pasien">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pasien</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-primary"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Ambil Antrian</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-danger"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pemeriksaan</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-
-                            </div>
+                            @include('modal_add_pasien')
 
 
 
-                            <div class="card card-custom" id="kt_card_3">
+
+
+                            <div class="card card-custom">
                                 <div class="card-header">
                                     <div class="card-title">
-
-                                        <h3 class="card-label">Daftar Kunjungan Pasien {{ $now->format('F')}}
-                                            {{ $now->year }}</h3>
+                                        <h3 class="card-label"></h3>
                                     </div>
                                     <div class="card-toolbar">
-                                        <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
-                                            data-toggle="tooltip" data-placement="top" title="Toggle Card">
-                                            <i class="ki ki-arrow-down icon-nm"></i>
-                                        </a>
+                                        <ul class="nav nav-light-success nav-bold nav-pills">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_4_1">
+                                                    <span class="nav-icon"><i class="flaticon-file-2"></i></span>
+                                                    <span class="nav-text">Biodata Pasien</span>
+                                                </a>
+                                            </li>
 
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_4_2">
+                                                    <span class="nav-icon"><i class="flaticon2-hourglass"></i></span>
+                                                    <span class="nav-text">Antrian Pasien</span> &nbsp<span
+                                                        class="badge badge-danger"> {{ count($antri) }}</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_4_3">
+                                                    <span class="nav-icon"><i class="fa fa-person-booth"></i></span>
+                                                    <span class="nav-text">Pasien Diruangan</span> &nbsp<span
+                                                        class="badge badge-danger"> 0</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_4_4">
+                                                    <span class="nav-icon"><i class="fa fa-clipboard-check"></i></span>
+                                                    <span class="nav-text">Pasien Selesai</span> &nbsp<span
+                                                        class="badge badge-danger"> 0</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-separate table-head-custom table-checkable"
-                                        id="kt_datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Faktur</th>
-                                                <th>Tanggal</th>
-                                                <th>Keluhan</th>
-                                                <th>Pemeriksa</th>
-
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                            @php
-                                            $nomor = 1;
-                                            @endphp
-                                            @foreach ($data as $d)
-                                            <tr>
-                                                <td style="width:5%">{{ $nomor }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->tgl_kunjungan }}</td>
-                                                <td>{{ $d->jk }}</td>
-                                                <td>{{ $d->hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
-
-                                                <td nowrap="nowrap">
-                                                    <form action="{{ route('dashboard.destroy', $d->id) }}"
-                                                        method="POST">
-                                                        <div class="dropdown dropdown-inline">
-                                                            <a href="../../update_pasien/{{ $d->id }}"
-                                                                class=" btn btn-sm btn-success btn-icon"
-                                                                title="Masukkan Ke Antrian">
-                                                                <i class="la la-hourglass"></i>
-                                                            </a>
-
-                                                        </div>
-                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
-                                                            title="Edit Data Pasien">
-                                                            <i class="la la-edit"></i>
-                                                        </a>
-
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class="la la-trash">
-                                                            </i>
-
-                                                    </form>
-                                                </td>
-                                            </tr>
-
-                                            @php
-                                            $nomor++;
-                                            @endphp
-                                            @endforeach
-
-
-
-
-                                        </tbody>
-                                    </table>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="kt_tab_pane_4_1" role="tabpanel"
+                                            aria-labelledby="kt_tab_pane_4_1">
+                                            @include('table_data_pasien')
+                                        </div>
+                                        <div class="tab-pane fade" id="kt_tab_pane_4_2" role="tabpanel"
+                                            aria-labelledby="kt_tab_pane_4_2">
+                                            @include('table_antrian_pasien')
+                                        </div>
+                                        <div class="tab-pane fade" id="kt_tab_pane_4_3" role="tabpanel"
+                                            aria-labelledby="kt_tab_pane_4_3">
+                                            @include('table_ruangan_pasien')
+                                        </div>
+                                        <div class="tab-pane fade" id="kt_tab_pane_4_4" role="tabpanel"
+                                            aria-labelledby="kt_tab_pane_4_4">
+                                            @include('table_pasien_selesai')
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
+
+                            <br>
 
                         </div>
                         <!--end::Container-->

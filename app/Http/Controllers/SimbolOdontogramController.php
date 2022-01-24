@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Pasien;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class SimbolOdontogramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +18,9 @@ class AdminController extends Controller
             if(session()->get('userid')!=1){
                 return redirect()->action([LoginController::class, 'index']);
             }else{
-                $data =DB::table('biodata_pasien')->get();
-                $antri =DB::table('antrian_pasien')->join('biodata_pasien','antrian_pasien.id_pasien','=','biodata_pasien.id')->where('antrian_pasien.status','=','1')->orderBy('antrian_pasien.mulai_antri','ASC')->get();
-                 $now = Carbon::now();
+                $data =DB::table('master_simbol_odontogram')->get();
                  
-                return view('admin',['now'=>$now,'data'=>$data,'antri'=>$antri]);
+                return view('master_simbol',['data'=>$data]);
             
             }
            
@@ -52,7 +47,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-     
+        //
     }
 
     /**
@@ -97,8 +92,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('biodata_pasien')->where('id',$id)->delete();
-        return redirect()->back()
-        ->with('success','Data berhasil dihapus');
+        //
     }
 }

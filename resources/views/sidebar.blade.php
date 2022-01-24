@@ -49,7 +49,7 @@ function active($currect_page)
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
                 <li class="menu-item menu-item-active" aria-haspopup="true">
-                    <a href="index.html" class="menu-link">
+                    <a href="../../" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <i class="nav-icon fas fa-paste"></i>
 
@@ -60,6 +60,17 @@ function active($currect_page)
                 </li>
 
                 <li class="menu-item" aria-haspopup="true">
+                    <a href="{{ url('/') }}/simbol" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <i class="nav-icon fas fa-notes-medical"></i>
+
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-text">Simbol Odontogram</span>
+                    </a>
+                </li>
+
+                {{-- <li class="menu-item" aria-haspopup="true">
                     <a href="../../" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <i class="nav-icon fas fa-notes-medical"></i>
@@ -79,7 +90,7 @@ function active($currect_page)
                         </span>
                         <span class="menu-text">Pemeriksaan Pasien</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <!--end::Menu Container-->

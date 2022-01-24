@@ -67,7 +67,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
 
-                            <H3>Dashboard</H3>
+                            <H3>Master Data Pasien</H3>
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
@@ -79,64 +79,40 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
                         <div class="container">
-
-                            <div class="row">
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-success"><a href="{{ url('/') }}/pasien">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pasien</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-primary"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Ambil Antrian</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-danger"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pemeriksaan</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="card card-custom" id="kt_card_3">
-                                <div class="card-header">
+                            @include('modal_add_pasien')
+                            @include('modal_edit_pasien')
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-
-                                        <h3 class="card-label">Daftar Kunjungan Pasien {{ $now->format('F')}}
-                                            {{ $now->year }}</h3>
+                                        <h3 class="card-label">Data Pasien
+                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
+                                        </h3>
                                     </div>
                                     <div class="card-toolbar">
-                                        <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
-                                            data-toggle="tooltip" data-placement="top" title="Toggle Card">
-                                            <i class="ki ki-arrow-down icon-nm"></i>
-                                        </a>
+                                        <!--begin::Dropdown-->
 
+                                        <!--end::Dropdown-->
+                                        <!--begin::Button-->
+                                        <a data-toggle="modal" data-target="#exampleModalCenter"
+                                            class="btn btn-primary font-weight-bolder">
+                                            <i class="la la-plus"></i>Tambah Pasien Baru</a>
+                                        <!--end::Button-->
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-separate table-head-custom table-checkable"
-                                        id="kt_datatable">
+                                    <!--begin: Datatable-->
+                                    <table class="table table-bordered table-checkable" id="kt_datatable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Faktur</th>
-                                                <th>Tanggal</th>
-                                                <th>Keluhan</th>
-                                                <th>Pemeriksa</th>
-
                                                 <th>Aksi</th>
+                                                <th style="width:5%">ID Pasien</th>
+                                                <th>Nama</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Pekerjaan</th>
+                                                <th>No HP</th>
+                                                <th>Alamat</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -146,30 +122,26 @@ License: You must have a valid license purchased only from themeforest(the above
                                             $nomor = 1;
                                             @endphp
                                             @foreach ($data as $d)
-                                            <tr>
-                                                <td style="width:5%">{{ $nomor }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->tgl_kunjungan }}</td>
-                                                <td>{{ $d->jk }}</td>
-                                                <td>{{ $d->hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
-
+                                            <tr id="tr{{$d->id}}">
+                                                <td style=" width:5%">{{ $nomor }}</td>
                                                 <td nowrap="nowrap">
-                                                    <form action="{{ route('dashboard.destroy', $d->id) }}"
-                                                        method="POST">
-                                                        <div class="dropdown dropdown-inline">
-                                                            <a href="../../update_pasien/{{ $d->id }}"
-                                                                class=" btn btn-sm btn-success btn-icon"
-                                                                title="Masukkan Ke Antrian">
-                                                                <i class="la la-hourglass"></i>
-                                                            </a>
+                                                    <form action="{{ route('pasien.destroy', $d->id) }}" method="POST">
 
-                                                        </div>
-                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
-                                                            title="Edit Data Pasien">
+                                                        <a href="javascript:;"
+                                                            class="btn btn-sm btn-info btn-icon edit_btn"
+                                                            id="{{$d->id}}" title=" Edit Data Pasien"
+                                                            data-tgl="{{ $d->tgl_lahir }}">
                                                             <i class="la la-edit"></i>
                                                         </a>
 
+                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
+                                                            title="Riwayat Medis">
+                                                            <i class="flaticon-file-2"></i>
+                                                        </a>
+                                                        <a href="{{ url('/') }}/odontogram/{{ $d->id }}"
+                                                            class="btn btn-sm btn-success btn-icon" title="Odontogram">
+                                                            <i class="fas fa-teeth-open"></i>
+                                                        </a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger btn-icon"
@@ -177,9 +149,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                                                 class="la la-trash">
                                                             </i>
+                                                        </button>
 
                                                     </form>
                                                 </td>
+                                                <td>{{ $d->id }}</td>
+                                                <td>{{ $d->nama }}</td>
+
+                                                <td>{{ $d->jk }}</td>
+                                                <td>{{ $d->pekerjaan }}</td>
+                                                <td>{{ $d->hp }}</td>
+                                                <td>{{ $d->alamat }}</td>
+
+
                                             </tr>
 
                                             @php
@@ -192,10 +174,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                         </tbody>
                                     </table>
+                                    <!--end: Datatable-->
                                 </div>
-
                             </div>
-
                         </div>
                         <!--end::Container-->
                     </div>
@@ -293,6 +274,8 @@ License: You must have a valid license purchased only from themeforest(the above
             "font-family": "Poppins"
         };
     </script>
+
+
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
     <script src="assets/plugins/global/plugins.bundle.js"></script>
@@ -315,6 +298,53 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
     <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
     <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
+
+    <script src="assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+
+    <script>
+        $(document).on('click', '.edit_btn', function () {
+
+        var id = $(this).attr('id');
+        $('#updateModal').modal('show')
+
+
+        // var data = $("tr"+id).children("td").map(function() {
+        //    return $(this).text();
+        // }).get();
+
+        //       console.log('#tr'+id);
+        var data = Array();
+        var tr = document.getElementById("tr" + id);
+        var td = tr.getElementsByTagName("td");
+        for (var i = 0; i < td.length; i++) {
+        data[i] = td[i].innerHTML;
+      //  console.log(data[i]);
+        }
+
+
+        var tgl = $(this).attr('data-tgl')
+        // console.log(data);
+
+        $('#idpasien').val(id);
+       
+        var datatgl = tgl.split('-');
+        $('#namapasien').val(data[3]);
+        $('.picker').datepicker('setDate', datatgl[1]+'/'+datatgl[2]+'/'+datatgl[0]);
+        $('#pekerjaan').val(data[5]);
+        $('#hp').val(data[6]);
+        $('#alamat').val(data[7]);
+
+        if(data[4]=='Laki-Laki'){
+                    $("#check1").attr("checked", true);
+                    $("#check2").attr("checked", false);
+                }else{
+                    $("#check1").attr("checked", false);
+                    $("#check2").attr("checked", true);
+                }
+
+        });
+    </script>
+
 </body>
 <!--end::Body-->
 

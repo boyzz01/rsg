@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
-    <base href="./public/assets/">
+    <base href="{{ url('/') }}/public/assets/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -55,147 +55,56 @@ License: You must have a valid license purchased only from themeforest(the above
             @include('sidebar')
             <!--end::Aside-->
             <!--begin::Wrapper-->
-            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper" style="padding-top:65px">
                 <!--begin::Header-->
                 @include('topbar')
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <!--begin::Subheader-->
-                    <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
-                        <div
-                            class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-                            <!--begin::Info-->
 
-                            <H3>Dashboard</H3>
-                            <!--end::Info-->
-                            <!--begin::Toolbar-->
-
-                            <!--end::Toolbar-->
-                        </div>
-                    </div>
                     <!--end::Subheader-->
                     <!--begin::Entry-->
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
                         <div class="container">
-
-                            <div class="row">
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-success"><a href="{{ url('/') }}/pasien">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pasien</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-primary"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Ambil Antrian</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-danger"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pemeriksaan</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="card card-custom" id="kt_card_3">
-                                <div class="card-header">
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-
-                                        <h3 class="card-label">Daftar Kunjungan Pasien {{ $now->format('F')}}
-                                            {{ $now->year }}</h3>
+                                        <h3 class="card-label">Kondisi Gigi Pasien {{ $biodata->id }} ({{ $biodata->nama
+                                            }}) / Gigi : {{ $idgigi }}
+                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
+                                        </h3>
                                     </div>
                                     <div class="card-toolbar">
-                                        <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
-                                            data-toggle="tooltip" data-placement="top" title="Toggle Card">
-                                            <i class="ki ki-arrow-down icon-nm"></i>
-                                        </a>
 
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-separate table-head-custom table-checkable"
-                                        id="kt_datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Faktur</th>
-                                                <th>Tanggal</th>
-                                                <th>Keluhan</th>
-                                                <th>Pemeriksa</th>
-
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                    <form action="" name="form1" autocomplete="off">
+                                        <div class="form-group row">
+                                            <label class="col-2 col-form-label">Pilih Kondisi Gigi</label>
+                                            <div class="col-10">
+                                                <select class="form-control" required>
+                                                    <option value="">Pilih Kondisi Gigi</option>
+                                                    @foreach ( $datagigi as $data )
+                                                    <option value="{{ $data->id }}">({{ $data->singkatan }}) {{
+                                                        $data->kondisi }}</option>
+                                                    @endforeach
 
 
-                                            @php
-                                            $nomor = 1;
-                                            @endphp
-                                            @foreach ($data as $d)
-                                            <tr>
-                                                <td style="width:5%">{{ $nomor }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->tgl_kunjungan }}</td>
-                                                <td>{{ $d->jk }}</td>
-                                                <td>{{ $d->hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
+                                                </select>
+                                            </div>
 
-                                                <td nowrap="nowrap">
-                                                    <form action="{{ route('dashboard.destroy', $d->id) }}"
-                                                        method="POST">
-                                                        <div class="dropdown dropdown-inline">
-                                                            <a href="../../update_pasien/{{ $d->id }}"
-                                                                class=" btn btn-sm btn-success btn-icon"
-                                                                title="Masukkan Ke Antrian">
-                                                                <i class="la la-hourglass"></i>
-                                                            </a>
+                                        </div>
 
-                                                        </div>
-                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
-                                                            title="Edit Data Pasien">
-                                                            <i class="la la-edit"></i>
-                                                        </a>
-
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class="la la-trash">
-                                                            </i>
-
-                                                    </form>
-                                                </td>
-                                            </tr>
-
-                                            @php
-                                            $nomor++;
-                                            @endphp
-                                            @endforeach
-
-
-
-
-                                        </tbody>
-                                    </table>
                                 </div>
-
+                                <div class="card-footer">
+                                    <button type="Submit" name="Submit" class="btn btn-primary">Simpan Data</button>
+                                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                                </div>
+                                </form>
                             </div>
-
                         </div>
                         <!--end::Container-->
                     </div>

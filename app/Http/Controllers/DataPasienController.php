@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Pasien;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class DataPasienController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,10 +20,8 @@ class AdminController extends Controller
                 return redirect()->action([LoginController::class, 'index']);
             }else{
                 $data =DB::table('biodata_pasien')->get();
-                $antri =DB::table('antrian_pasien')->join('biodata_pasien','antrian_pasien.id_pasien','=','biodata_pasien.id')->where('antrian_pasien.status','=','1')->orderBy('antrian_pasien.mulai_antri','ASC')->get();
-                 $now = Carbon::now();
                  
-                return view('admin',['now'=>$now,'data'=>$data,'antri'=>$antri]);
+                return view('master_pasien',['data'=>$data]);
             
             }
            
@@ -52,7 +48,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-     
+       
+         
+        $tgl = explode('/', $request->tgl_lahir);
+        $request['tgl_lahir'] = $tgl[2].'-'.$tgl[0].'-'.$tgl[1];
+        /// redirect jika sukses menyimpan data
+        Pasien::create($request->all());
+        return redirect()->back()
+        ->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -63,7 +66,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+     
     }
 
     /**
@@ -87,6 +90,14 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $id=$request['id'];
+       
+        $tgl = explode('/', $request->tgl_lahir);
+        $request['tgl_lahir'] = $tgl[2].'-'.$tgl[0].'-'.$tgl[1];
+        $data = Pasien::find($id);
+        $data->update($request->all());
+        return redirect()->back()
+        ->with('success','Data berhasil diupdate');
     }
 
     /**
