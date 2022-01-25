@@ -81,6 +81,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="container">
                             @include('alert')
                             @include('modal_cari_pasien')
+                            @include('modal_add_pasien2')
                             <div class="row">
                                 <div class="col-lg-6 mb-4">
                                     <div class="card card-custom">
@@ -102,7 +103,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form action="{{ url('/') }}/addantrian" name="form1" autocomplete="off">
+                                            <form action="{{ route('antrian.store') }}" method="post" name="form1"
+                                                autocomplete="off">
                                                 {{ csrf_field() }}
                                                 <div class="form-group row">
 
@@ -112,7 +114,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         Pasien</label>
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" name="idpasien"
-                                                            id="idpasien" disabled="disabled" placeholder="" />
+                                                            id="idpasien" disabled="disabled" required=""
+                                                            placeholder="" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row"><label for="nmpasien"
@@ -159,8 +162,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </div>
                                                 </div>
                                             </form>
-                                            <h6>Belum terdaftar di klinik ini? <a
-                                                    href="https://demo-sisfonet.xyz/klinik-gigi/layanan/isi-biodata.html">Klik
+                                            <h6>Belum terdaftar di klinik ini? <a href="" data-toggle="modal"
+                                                    data-target="#modalAdd">Klik
                                                     disini untuk mengisi biodata</a>.</h6>
                                         </div>
 
@@ -189,8 +192,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Waktu</th>
+                                                        <th>No Antrian</th>
                                                         <th>Nama</th>
+                                                        <th>Waktu</th>
                                                         <th>Status</th>
 
                                                     </tr>
@@ -204,21 +208,23 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     @foreach ($antrian as $d)
                                                     <tr id="tr{{$d->id}}">
                                                         <td>{{ $nomor }}</td>
+                                                        <td>P{{ $d->id }}</td>
                                                         <td>{{ $d->nama }}</td>
                                                         <td>{{ $d->mulai_antri }}</td>
 
-                                                        @if ($d->status=="1")
-                                                        <td><span
+                                                        <td nowrap="nowrap">
+                                                            @if ($d->status=="1")
+                                                            <span
                                                                 class="label label-lg font-weight-bold label-light-primary label-inline">Sedang
                                                                 Antri</span>
-                                                        </td>
-                                                        @elseif ($d->status=="2")
-                                                        <td><span
+
+                                                            @elseif ($d->status=="2")
+                                                            <span
                                                                 class="label label-lg font-weight-bold label-light-info label-inline">Dalam
                                                                 Pemriksaan</span>
-                                                        </td>
-                                                        @endif
 
+                                                            @endif
+                                                        </td>
                                                     </tr>
 
                                                     @php
@@ -356,7 +362,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
     <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
     <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
-
+    <script src="assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
     <script>
         $(document).ready(function() 
         {

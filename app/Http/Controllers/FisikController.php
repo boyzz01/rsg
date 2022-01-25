@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Antrian;
+use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class AntrianController extends Controller
+class FisikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class AntrianController extends Controller
      */
     public function index()
     {
-        $data =DB::table('biodata_pasien')->get();
-        $antrian =DB::table('antrian_pasien')->join('biodata_pasien','biodata_pasien.id','=','antrian_pasien.id_pasien')->get();
-        return view('antrian',['data'=>$data,'antrian'=>$antrian]);
+        //
     }
 
     /**
@@ -38,19 +35,10 @@ class AntrianController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->id_pasien===null){
-            return redirect()->back()
-            ->with('error','Mohon pilih pasien terlebih dahulu');
-        }
-        $user = DB::table('antrian_pasien')->where('id_pasien','=',$request->id_pasien)->first();
-        if ($user === null) {
-            Antrian::create($request->all());
-            return redirect()->back()
-            ->with('success','Data berhasil ditambahkan');
-        }else{
-            return redirect()->back()
-            ->with('error','Pasien sudah dalam antrian');
-        }
+        //
+        Pemeriksaan::create($request->all());
+        return redirect()->back()
+        ->with('success','Data berhasil ditambahkan');
     }
 
     /**
@@ -85,6 +73,10 @@ class AntrianController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = Pemeriksaan::find($id);
+        $data->update($request->all());
+        return redirect()->back()
+        ->with('success','Data berhasil diupdate');
     }
 
     /**
@@ -95,8 +87,6 @@ class AntrianController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('antrian_pasien')->where('id',$id)->delete();
-        return redirect()->back()
-        ->with('success','Data berhasil dihapus');
+        //
     }
 }

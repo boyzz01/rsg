@@ -13,7 +13,7 @@ class Antrian extends Authenticatable
     public $table = "antrian_pasien";
     public $timestamps = false;
     protected $fillable = [
-        'id','id_pasien','mulai_antri','akhir_antri','status','keluhan'
+        'id_pasien','mulai_antri','akhir_antri','status','keluhan'
     ];
 
 

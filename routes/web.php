@@ -5,11 +5,16 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\DataPasienController;
+use App\Http\Controllers\FisikController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OdontogramController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PemeriksaanController;
 use App\Http\Controllers\SimbolOdontogramController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TindakanController;
+use App\Models\Antrian;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [BaseController::class, 'index']);
-Route::resource('/dashboard', AdminController::class);
+//Route::resource('/dashboard', AdminController::class);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/keluar', [LoginController::class, 'keluar']);
 Route::post('/checkLogin', [LoginController::class, 'check']);
@@ -33,9 +38,11 @@ Route::get('/odontogram/{id}', [OdontogramController::class, 'index']);
 Route::get('/getsimbol', [OdontogramController::class, 'getsimbol']);
 Route::get('/addrekammedis/{idpasien}/{idgigi}', [AddRekamMedisController::class, 'index']);
 Route::get('/tambahodontogram', [AddRekamMedisController::class, 'tambah']);
-Route::get('/antrian', [AntrianController::class, 'index']);
-Route::get('/addantrian', [AntrianController::class, 'addantrian']);
-
+Route::resource('/antrian',AntrianController::class);
+Route::get('/pemeriksaan', [PemeriksaanController::class, 'antrian']);
+Route::get('/pemeriksaan/{id}', [PemeriksaanController::class, 'index']);
+Route::resource('/fisik',FisikController::class);
+Route::resource('/tindakan',TindakanController::class);
 
 Route::get('/update_pasien/{id}', [StatusController::class, 'updatestatus']);
 

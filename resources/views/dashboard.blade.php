@@ -96,8 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a></div>
                                 </div>
                                 <div class="col-lg-4 mb-4">
-                                    <div class="card bg-danger"><a
-                                            href="https://demo-sisfonet.xyz/klinik-gigi/master/pasien.html">
+                                    <div class="card bg-danger"><a href="{{ url('/') }}/pemeriksaan">
                                             <div class="card-body text-center">
                                                 <h3 style="color:white">Pemeriksaan</h3>
                                             </div>
@@ -154,8 +153,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td>{{ $d->alamat }}</td>
 
                                                 <td nowrap="nowrap">
-                                                    <form action="{{ route('dashboard.destroy', $d->id) }}"
-                                                        method="POST">
+                                                    <form action="" method="POST">
                                                         <div class="dropdown dropdown-inline">
                                                             <a href="../../update_pasien/{{ $d->id }}"
                                                                 class=" btn btn-sm btn-success btn-icon"
@@ -169,13 +167,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <i class="la la-edit"></i>
                                                         </a>
 
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class="la la-trash">
-                                                            </i>
+
 
                                                     </form>
                                                 </td>
