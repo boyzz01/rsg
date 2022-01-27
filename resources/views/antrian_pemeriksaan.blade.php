@@ -128,7 +128,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td>{{ $d->keluhan }}</td>
                                                 <td nowrap="nowrap" style="width: 20%">
                                                     <form action="{{ route('antrian.destroy', $d->id) }}" method="POST">
-                                                        <a href="{{ url('/') }}/pemeriksaan/{{ $d->id }}"
+                                                        <a href="{{ url('/') }}/pemeriksaan/{{ $d->id }}/{{ $d->id_pasien }}"
                                                             class="btn btn-success font-weight-bold mr-2">
                                                             <i class="fas fa-teeth-open"></i> Pemeriksaan
                                                         </a>

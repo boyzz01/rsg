@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Layanan;
+use App\Models\Tindakan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TindakanController extends Controller
+class MasterTindakanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,6 +16,19 @@ class TindakanController extends Controller
     public function index()
     {
         //
+        if (session()->has('userid')){
+            if(session()->get('userid')!=1){
+                return redirect()->action([LoginController::class, 'index']);
+            }else{
+                $data =DB::table('master_tindakan')->get();
+                 
+                return view('master_tindakan',['data'=>$data]);
+            
+            }
+           
+        }else {
+            return redirect()->action([LoginController::class, 'index']);
+        }
     }
 
     /**
@@ -36,7 +49,9 @@ class TindakanController extends Controller
      */
     public function store(Request $request)
     {
-        Layanan::create($request->all());
+        //
+    
+        Tindakan::create($request->all());
         return redirect()->back()
         ->with('success','Data berhasil ditambahkan');
     }
@@ -50,10 +65,6 @@ class TindakanController extends Controller
     public function show($id)
     {
         //
-        $biodata = DB::select("SELECT biodata_pasien.* FROM `biodata_pasien` JOIN antrian_pasien WHERE antrian_pasien.id_pasien = biodata_pasien.id AND antrian_pasien.id =$id");
-        $data = DB::table('master_tindakan')->get();
-        $layanan =DB::table('layanan')->join('master_tindakan','layanan.id_tindakan','=','master_tindakan.id')->where('no_trans','=',$id)->get();
-        return view('tindakan',['data'=>$data,'id'=>$id,'biodata'=>$biodata,'layanan'=>$layanan]);
     }
 
     /**
@@ -64,7 +75,7 @@ class TindakanController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -77,6 +88,11 @@ class TindakanController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $id=$request['id'];
+        $data = Tindakan::find($id);
+        $data->update($request->all());
+        return redirect()->back()
+        ->with('success','Data berhasil diupdate');
     }
 
     /**
@@ -88,5 +104,8 @@ class TindakanController extends Controller
     public function destroy($id)
     {
         //
+        DB::table('master_tindakan')->where('id',$id)->delete();
+        return redirect()->back()
+        ->with('success','Data berhasil dihapus');
     }
 }

@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
 
-    <base href="../public/assets/">
+    <base href="{{ url('/') }}/public/assets/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />

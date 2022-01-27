@@ -132,9 +132,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <th>Faktur</th>
                                                 <th>Tanggal</th>
                                                 <th>Keluhan</th>
-                                                <th>Pemeriksa</th>
+                                                <th>Alamat</th>
 
-                                                <th>Aksi</th>
+                                                {{-- <th>Aksi</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -152,14 +152,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td>{{ $d->hp }}</td>
                                                 <td>{{ $d->alamat }}</td>
 
-                                                <td nowrap="nowrap">
+                                                {{-- <td nowrap="nowrap">
                                                     <form action="" method="POST">
                                                         <div class="dropdown dropdown-inline">
-                                                            <a href="../../update_pasien/{{ $d->id }}"
-                                                                class=" btn btn-sm btn-success btn-icon"
-                                                                title="Masukkan Ke Antrian">
-                                                                <i class="la la-hourglass"></i>
-                                                            </a>
 
                                                         </div>
                                                         <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
@@ -170,7 +165,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                                                     </form>
-                                                </td>
+                                                </td> --}}
                                             </tr>
 
                                             @php

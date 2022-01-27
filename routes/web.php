@@ -7,6 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\FisikController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MasterTindakanController;
 use App\Http\Controllers\OdontogramController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PembayaranController;
@@ -40,9 +41,11 @@ Route::get('/addrekammedis/{idpasien}/{idgigi}', [AddRekamMedisController::class
 Route::get('/tambahodontogram', [AddRekamMedisController::class, 'tambah']);
 Route::resource('/antrian',AntrianController::class);
 Route::get('/pemeriksaan', [PemeriksaanController::class, 'antrian']);
-Route::get('/pemeriksaan/{id}', [PemeriksaanController::class, 'index']);
+Route::get('/pemeriksaan/{id_trans}/{id_pasien}', [PemeriksaanController::class, 'index']);
 Route::resource('/fisik',FisikController::class);
+Route::resource('/data-tindakan',MasterTindakanController::class);
 Route::resource('/tindakan',TindakanController::class);
+Route::resource('/transaksi',TindakanController::class);
 
 Route::get('/update_pasien/{id}', [StatusController::class, 'updatestatus']);
 

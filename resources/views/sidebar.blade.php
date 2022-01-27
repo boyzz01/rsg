@@ -70,6 +70,17 @@ function active($currect_page)
                     </a>
                 </li>
 
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="{{ url('/') }}/data-tindakan" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <i class="nav-icon fas fa-notes-medical"></i>
+
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-text">Data Tindakan</span>
+                    </a>
+                </li>
+
                 {{-- <li class="menu-item" aria-haspopup="true">
                     <a href="../../" class="menu-link">
                         <span class="svg-icon menu-icon">

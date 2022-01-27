@@ -9,7 +9,8 @@ class PemeriksaanController extends Controller
 {
 
     function antrian(){
-        $antrian =DB::table('antrian_pasien')->join('biodata_pasien','biodata_pasien.id','=','antrian_pasien.id_pasien')->where('status','=','1')->get();
+        $antrian = DB::select("SELECT antrian_pasien.*,biodata_pasien.nama FROM `antrian_pasien` JOIN biodata_pasien WHERE antrian_pasien.id_pasien = biodata_pasien.id");
+      //  $antrian =DB::table('antrian_pasien')->Join('biodata_pasien','biodata_pasien.id','=','antrian_pasien.id_pasien')->where('antrian_pasien.status','=','1')->get();
         return view('antrian_pemeriksaan',['antrian'=>$antrian]);
     }
     function index($id){
