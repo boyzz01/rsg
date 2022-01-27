@@ -5,16 +5,32 @@ function active($currect_page)
     $url = $url_array[2];
 
     if ($currect_page == $url) {
-        echo 'active'; //class name in css
+        echo 'menu-item-active'; //class name in css
+    }
+}
+
+function open($currect_page)
+{
+    $url_array = explode('/', $_SERVER['REQUEST_URI']);
+    $url = $url_array[2];
+
+    if ($currect_page == $url) {
+        echo 'menu-item-open'; //class name in css
     }
 }
 ?>
+
+<style type="text/css">
+    /* .menu-link {
+        background-color: #6c6c71;
+    } */
+</style>
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <!--begin::Brand-->
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
-        <a href="index.html" class="brand-logo">
-            <img alt="Logo" src="assets/img/logo3.png" style="width:150px;" />
+        <a href="{{ url('/') }}" class="brand-logo">
+            <img alt="Logo" src="public/assets/assets/img/logo3.png" style="width:150px;" />
         </a>
         <!--end::Logo-->
         <!--begin::Toggle-->
@@ -48,7 +64,9 @@ function active($currect_page)
             data-menu-dropdown-timeout="500">
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
-                <li class="menu-item menu-item-active" aria-haspopup="true">
+
+
+                <li class="menu-item <?php active("");?>" aria-haspopup="true">
                     <a href="../../" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <i class="nav-icon fas fa-paste"></i>
@@ -59,26 +77,85 @@ function active($currect_page)
                     </a>
                 </li>
 
-                <li class="menu-item" aria-haspopup="true">
-                    <a href="{{ url('/') }}/simbol" class="menu-link">
+                <li class="menu-item <?php active ('pasien');?>" aria-haspopup="true">
+                    <a href="{{ url('/') }}/pasien" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <i class="nav-icon fas fa-notes-medical"></i>
+                            <i class="nav-icon 
+                            fas fa-hospital-user"></i>
 
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Simbol Odontogram</span>
+                        <span class="menu-text">Pasien</span>
                     </a>
                 </li>
 
-                <li class="menu-item" aria-haspopup="true">
-                    <a href="{{ url('/') }}/data-tindakan" class="menu-link">
+                <li class="menu-item menu-item-submenu <?php open ('data-tindakan');?>" aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <i class="nav-icon fas fa-notes-medical"></i>
-
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg-->
+                            <i class="nav-icon fas fa-database"></i>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Data Tindakan</span>
+                        <span class="menu-text">Master</span>
+                        <i class="menu-arrow"></i>
                     </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-link">
+                                    <span class="menu-text">Master</span>
+                                </span>
+                            </li>
+                            <li class="menu-item <?php active ('data-tindakan');?>" aria-haspopup="true">
+                                <a href="{{ url('/') }}/data-tindakan" class="menu-link">
+                                    <span class="svg-icon menu-icon">
+                                        <i class="nav-icon fas fa-book-medical"></i>
+
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-text">Data Tindakan</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="menu-item menu-item-submenu <?php open ('simbol');?>" aria-haspopup="true"
+                    data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Bucket.svg-->
+                            <i class="nav-icon fas fa-cog"></i>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-text">Tools</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-link">
+                                    <span class="menu-text">Tools</span>
+                                </span>
+                            </li>
+                            <li class="menu-item <?php active ('simbol');?>" aria-haspopup="true">
+                                <a href="{{ url('/') }}/simbol" class="menu-link">
+                                    <span class="svg-icon menu-icon">
+                                        <i class="nav-icon fas fa-hospital-symbol"></i>
+
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-text">Simbol Odontogram</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </li>
 
                 {{-- <li class="menu-item" aria-haspopup="true">

@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
-    <base href="{{ url('/') }}/">
+    <base href="./public/assets/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -25,23 +25,21 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
-        type="text/css" />
+    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="public/assets/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="public/assets/assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
-    <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
-        type="text/css" />
+    <link rel="shortcut icon" href="assets/img/logo2.png" />
+    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -82,66 +80,107 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--begin::Container-->
                         <div class="container">
 
-                            @include('alert')
-                            @include('modal_cari_pasien')
-                            @include('modal_add_pasien2')
-                            @include('modal_masukkan')
-                            <div class="card card-custom">
-                                <div class="card-header card-header-tabs-line">
-                                    <div class="card-toolbar">
-                                        <ul class="nav nav-tabs nav-bold nav-tabs-line">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" data-toggle="tab" href="#tab1">
-                                                    <span class="nav-icon"><i class="flaticon2-hourglass-1"></i></span>
-                                                    <span class="nav-text">Antrian Pasien</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tab2">
-                                                    <span class="nav-icon"><i class="
-                                                        far fa-arrow-alt-circle-right"></i></span>
-                                                    <span class="nav-text">Masukkan Pasien Keruangan</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tab3">
-                                                    <span class="nav-icon"><i class="fa fa-person-booth"></i></span>
-                                                    <span class="nav-text">Pasien dalam Ruangan</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tab4">
-                                                    <span class="nav-icon"><i class="fa fa-clipboard-check"></i></span>
-                                                    <span class="nav-text">Pasien Selesai</span>
-                                                </a>
-                                            </li>
-                                        </ul>
+                            <div class="row">
+                                <div class="col-lg-4 mb-4">
+                                    <div class="card bg-success"><a href="{{ url('/') }}/pasien">
+                                            <div class="card-body text-center">
+                                                <h3 style="color:white">Pasien</h3>
+                                            </div>
+                                        </a></div>
+                                </div>
+                                <div class="col-lg-4 mb-4">
+                                    <div class="card bg-primary"><a href="{{ url('/') }}/antrian">
+                                            <div class="card-body text-center">
+                                                <h3 style="color:white">Ambil Antrian</h3>
+                                            </div>
+                                        </a></div>
+                                </div>
+                                <div class="col-lg-4 mb-4">
+                                    <div class="card bg-danger"><a href="{{ url('/') }}/pemeriksaan">
+                                            <div class="card-body text-center">
+                                                <h3 style="color:white">Pemeriksaan</h3>
+                                            </div>
+                                        </a></div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="card card-custom" id="kt_card_3">
+                                <div class="card-header">
+                                    <div class="card-title">
+
+                                        <h3 class="card-label">Daftar Kunjungan Pasien {{ $now->format('F')}}
+                                            {{ $now->year }}</h3>
                                     </div>
                                     <div class="card-toolbar">
+                                        <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
+                                            data-toggle="tooltip" data-placement="top" title="Toggle Card">
+                                            <i class="ki ki-arrow-down icon-nm"></i>
+                                        </a>
 
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active" id="tab1" role="tabpanel"
-                                            aria-labelledby="tab1">
-                                            @include('tab_antrian')
-                                        </div>
-                                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
-                                            @include('tab_masukkan_ruangan')
-                                        </div>
-                                        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
-                                            @include('tab_pasien_in_room')
-                                        </div>
-                                    </div>
+                                    <table class="table table-separate table-head-custom table-checkable"
+                                        id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Pasien</th>
+                                                <th>Faktur</th>
+                                                <th>Tanggal</th>
+                                                <th>Keluhan</th>
+                                                <th>Alamat</th>
+
+                                                {{-- <th>Aksi</th> --}}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @php
+                                            $nomor = 1;
+                                            @endphp
+                                            @foreach ($data as $d)
+                                            <tr>
+                                                <td style="width:5%">{{ $nomor }}</td>
+                                                <td>{{ $d->nama }}</td>
+                                                <td>{{ $d->tgl_kunjungan }}</td>
+                                                <td>{{ $d->jk }}</td>
+                                                <td>{{ $d->hp }}</td>
+                                                <td>{{ $d->alamat }}</td>
+
+                                                {{-- <td nowrap="nowrap">
+                                                    <form action="" method="POST">
+                                                        <div class="dropdown dropdown-inline">
+
+                                                        </div>
+                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
+                                                            title="Edit Data Pasien">
+                                                            <i class="la la-edit"></i>
+                                                        </a>
+
+
+
+                                                    </form>
+                                                </td> --}}
+                                            </tr>
+
+                                            @php
+                                            $nomor++;
+                                            @endphp
+                                            @endforeach
+
+
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
+
                             </div>
-
-
-                            <br>
-
-
-
 
                         </div>
                         <!--end::Container-->
@@ -242,74 +281,26 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="public/assets/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-    <script src="public/assets/assets/js/scripts.bundle.js"></script>
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-    <script src="public/assets/assets/plugins/custom/gmaps/gmaps.js"></script>
+    <script src="assets/plugins/custom/gmaps/gmaps.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="public/assets/assets/js/pages/widgets.js"></script>
+    <script src="assets/js/pages/widgets.js"></script>
     <!--end::Page Scripts-->
 
-    <script src="public/assets/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers.js"></script>
-    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers1.js"></script>
-    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
-    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
-
-    <script>
-        $(document).ready(function() 
-        {
-            
-            if (location.hash) {
-  $('a[href=\'' + location.hash + '\']').tab('show');
-}
-var activeTab = localStorage.getItem('activeTab');
-if (activeTab) {
-  $('a[href="' + activeTab + '"]').tab('show');
-}
-
-$('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
-  e.preventDefault()
-  var tab_name = this.getAttribute('href')
-  if (history.pushState) {
-    history.pushState(null, null, tab_name)
-  }
-  else {
-    location.hash = tab_name
-  }
-  localStorage.setItem('activeTab', tab_name)
-
-  $(this).tab('show');
-  return false;
-});
-$(window).on('popstate', function () {
-  var anchor = location.hash ||
-    $('a[data-toggle=\'tab\']').first().attr('href');
-  $('a[href=\'' + anchor + '\']').tab('show');
-});
-            console.log("1");
-            $('#kt_datatable tbody').on('click', 'tr', function () {
-          
-            var data =  $('#kt_datatable').DataTable().row(this).data();
-           // console.log(data);
-            var idp = data[1];
-            var nmp = data[2];
-            var almt = data[4];
-            $('#caripasien').modal('hide');
-            $('#idpasienc').val(idp);
-            $('#idc').val(idp);
-            $('#namapasienc').val(nmp);
-            $('#alamatpasienc').val(almt);
-            });
-        });
-    </script>
+    <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
+    <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
+    <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
+    <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
 </body>
 <!--end::Body-->
 

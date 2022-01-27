@@ -15,7 +15,7 @@
             <div class="topbar-item">
                 <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2">
                     <div class="image">
-                        <img src="assets/img/doctor.png" style="width: 30px;" alt="User Image">
+                        <img src="public/assets/assets/img/doctor.png" style="width: 30px;" alt="User Image">
                     </div>
                 </div>
             </div>

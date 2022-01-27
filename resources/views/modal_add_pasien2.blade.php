@@ -1,6 +1,6 @@
 <section>
 
-    <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade" id="modalAdd2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <form action="{{ route('pasien.store') }}" method="post" name="form1" autocomplete="off">
             {{ csrf_field() }}
