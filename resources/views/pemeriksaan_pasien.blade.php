@@ -86,11 +86,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             @include('alert')
                             @include('modal_add_rm')
-                            @if ($fisik==null)
-                            @include('modal_pemeriksaan_fisik')
-                            @elseif($fisik!=null)
-                            @include('modal_update_pemeriksaan_fisik')
-                            @endif
+
 
                             <div class="card card-custom">
                                 <div class="card-header card-header-tabs-line">
@@ -99,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#tab1">
                                                     <span class="nav-icon"><i class="flaticon-grid-menu"></i></span>
-                                                    <span class="nav-text">Keadaan Umum</span>
+                                                    <span class="nav-text">Riwayat Medis</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
@@ -127,6 +123,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <span class="nav-text">Rencana Perawatan</span>
                                                 </a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab6">
+                                                    <span class="nav-icon"><i class="
+                                                        fas fa-file-invoice-dollar"></i></span>
+                                                    <span class="nav-text">Invoice</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="card-toolbar">
@@ -137,7 +140,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="tab1" role="tabpanel"
                                             aria-labelledby="tab1">
-
+                                            @include('tab_riwayat_medis')
                                         </div>
                                         <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
                                             @include('tab_ekstra_oral')
@@ -164,14 +167,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5">
-
+                                            @include('tab_rencana_perawatan')
+                                        </div>
+                                        <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6">
+                                            @include('tab_invoice')
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
+                                {{-- <div class="card-footer">
                                     <a href="{{ route('tindakan.show',$biodata->id) }}" class="btn btn-primary">Lanjut
                                         Ke Tindakan dan Obat</a>
-                                </div>
+                                </div> --}}
                             </div>
 
 
@@ -425,6 +431,75 @@ License: You must have a valid license purchased only from themeforest(the above
 
 });
     </script>
+
+    <script>
+        // Class definition
+           
+
+// Class definition
+            var KTSelect2 = function() {
+            // Private functions
+            var demos = function() {
+            // basic
+            $('#kt_select2_4').select2({
+            placeholder: "Jenis Tindakan",
+            allowClear: true
+            });
+
+
+            }
+
+     
+
+            // Public functions
+            return {
+            init: function() {
+            demos();
+            }
+            };
+            }();
+
+            // Initialization
+            jQuery(document).ready(function() {
+            KTSelect2.init();
+            });
+
+
+    </script>
+    {{-- <script>
+        $(document).ready(function() 
+            {
+                
+                        if (location.hash) {
+                $('a[href='+window.location.pathname+'\'' + location.hash + '\']').tab('show');
+                }
+                var activeTab = localStorage.getItem('activeTab');
+                if (activeTab) {
+                $('a[href="' + activeTab + '"]').tab('show');
+                }
+
+                $('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
+                e.preventDefault()
+                var tab_name = this.getAttribute('href')
+                if (history.pushState) {
+                history.pushState(null, null, tab_name)
+                }
+                else {
+                location.hash = tab_name
+                }
+                localStorage.setItem('activeTab', tab_name)
+
+                $(this).tab('show');
+                return false;
+                });
+                $(window).on('popstate', function () {
+                var anchor = location.hash ||
+                $('a[data-toggle=\'tab\']').first().attr('href');
+                $('a[href=\'' + anchor + '\']').tab('show');
+                });
+                      
+            });
+    </script> --}}
 </body>
 <!--end::Body-->
 

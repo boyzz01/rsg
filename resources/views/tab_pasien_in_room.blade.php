@@ -7,6 +7,7 @@
             <th>Waktu</th>
 
             <th>Keluhan</th>
+            <th>Dokter</th>
             <th>Aksi</th>
 
         </tr>
@@ -25,6 +26,8 @@
             <td>{{ $d->mulai_antri }}</td>
 
             <td>{{ $d->keluhan }}</td>
+
+            <td>{{ $d->dokter_p }}</td>
             <td nowrap="nowrap" style="width: 20%">
                 <form action="{{ route('antrian.destroy', $d->id) }}" method="POST">
                     <a href="{{ url('/') }}/pemeriksaan/{{ $d->id }}/{{ $d->id_pasien }}"

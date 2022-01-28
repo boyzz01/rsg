@@ -1,6 +1,5 @@
 <section>
 
-    @include('alert')
     <div class="modal fade" id="addrm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <form action="{{ url('/') }}/tambahodontogram" name="form1" autocomplete="off">

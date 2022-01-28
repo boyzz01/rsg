@@ -12,6 +12,8 @@ use App\Http\Controllers\OdontogramController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemeriksaanController;
+use App\Http\Controllers\RMController;
+use App\Http\Controllers\RPController;
 use App\Http\Controllers\SimbolOdontogramController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TindakanController;
@@ -46,6 +48,8 @@ Route::resource('/fisik',FisikController::class);
 Route::resource('/data-tindakan',MasterTindakanController::class);
 Route::resource('/tindakan',TindakanController::class);
 Route::resource('/transaksi',TindakanController::class);
+Route::resource('/rm',RMController::class);
+Route::resource('/rp',RPController::class);
 Route::get('/update_status', [StatusController::class, 'updatestatus']);
 
 

@@ -15,13 +15,33 @@ class PemeriksaanController extends Controller
     }
     function index($id_trans,$id_pasien){
 
+
+      $check =DB::table('riwayat_medis')->where('id_trans','=',$id_trans)->first();
+
+      if($check==null){
+        DB::insert('insert into riwayat_medis 
+        (id_trans, id_pasien,tgl)  values 
+        (?,?,?)',[$id_trans,$id_pasien,now()]);
+  
+        
+        DB::insert('insert into pemeriksaan
+        (id_trans, id_pasien,tgl)  values 
+        (?,?,?)',[$id_trans,$id_pasien, date('Y-m-d H:m:s')]);
+      }
+    
+
+      $rm=DB::table('riwayat_medis')->where('id_trans','=',$id_trans)->first();
+      $pemeriksaan=DB::table('pemeriksaan')->where('id_trans','=',$id_trans)->first();
+
+      $rp = DB::table('rencana_perawatan')->where('id_trans','=',$id_trans)->get();
         $id = $id_pasien;
       //  $data = DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram WHERE odontogram_pasien.kondisi = master_simbol_odontogram.id AND odontogram_pasien.id = $id");
         $data =DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram WHERE odontogram_pasien.kondisi = master_simbol_odontogram.id AND odontogram_pasien.id_pasien = $id AND odontogram_pasien.id IN (SELECT MAX(odontogram_pasien.id) FROM odontogram_pasien GROUP BY gigi)");
         $biodata =DB::table('biodata_pasien')->where('id','=',$id)->first();
         $dataall =DB::table('odontogram_pasien')->join('master_simbol_odontogram','odontogram_pasien.kondisi','=','master_simbol_odontogram.id')->where('id_pasien','=',$id)->orderByDesc('odontogram_pasien.id')->get()->toArray(); 
-        $fisik = DB::table('pemeriksaan')->where('id_pasien','=',$id)->first();
         $datagigi =DB::table('master_simbol_odontogram')->get();
-        return view('pemeriksaan_pasien',['data'=>$data,'biodata'=>$biodata,'dataall'=>$dataall,'fisik'=>$fisik,'datagigi'=>$datagigi]);
+        $tindakan = DB::table('master_tindakan')->get();
+        $layanan =DB::table('layanan')->join('master_tindakan','layanan.id_tindakan','=','master_tindakan.id')->where('no_trans','=',$id)->get();
+        return view('pemeriksaan_pasien',['rp'=>$rp,'rm'=>$rm,'pm'=>$pemeriksaan,'layanan'=>$layanan,'tindakan'=>$tindakan,'idtrans'=>$id_trans,'data'=>$data,'biodata'=>$biodata,'dataall'=>$dataall,'datagigi'=>$datagigi]);
     }
 }
