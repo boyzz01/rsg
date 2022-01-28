@@ -2,8 +2,9 @@
 
     <div class="modal fade" id="modalmasukkan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
-        <form action="{{ route('pasien.store') }}" method="post" name="form1" autocomplete="off">
+        <form action="{{ route('antrian.update',2) }}" method="post" name="form1" autocomplete="off">
             {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 700px;">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -14,7 +15,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" id='idadd' name="id">
+                        <input type="hidden" id='idantrian' name="idantrian">
                         <input type="hidden" id='tgl_kunjungan' name="tgl_kunjungan" value="{{ date('Y-m-d H:m:s') }}">
 
                         <div class="card-body">

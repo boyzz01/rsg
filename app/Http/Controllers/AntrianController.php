@@ -82,9 +82,18 @@ class AntrianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $data)
     {
         //
+
+        
+        $id_antrian = $request->idantrian;
+        $dokter = $request->dokter;
+
+        DB::update("update antrian_pasien set status='$data',dokter_p = '$dokter' where id = '$id_antrian'");
+
+        return redirect()->back()
+        ->with('success','Pasien masuk ruangan');
     }
 
     /**

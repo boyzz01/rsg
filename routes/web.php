@@ -46,8 +46,7 @@ Route::resource('/fisik',FisikController::class);
 Route::resource('/data-tindakan',MasterTindakanController::class);
 Route::resource('/tindakan',TindakanController::class);
 Route::resource('/transaksi',TindakanController::class);
-
-Route::get('/update_pasien/{id}', [StatusController::class, 'updatestatus']);
+Route::get('/update_status', [StatusController::class, 'updatestatus']);
 
 
 Route::get('/pasien/{id}' , [PasienController::class, 'index']);

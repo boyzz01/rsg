@@ -17,7 +17,7 @@
         @php
         $nomor = 1;
         @endphp
-        @foreach ($antrian as $d)
+        @foreach ($antri as $d)
         <tr id="tr{{$d->id}}">
             <td>{{ $nomor }}</td>
             <td>A{{ $d->id }}</td>
@@ -27,8 +27,11 @@
             <td>{{ $d->keluhan }}</td>
             <td nowrap="nowrap" style="width: 20%">
                 <form action="{{ route('antrian.destroy', $d->id) }}" method="POST">
-                    <a data-toggle="modal" data-target="#modalmasukkan" class="btn btn-primary font-weight-bolder">
-                        <i class="far fa-arrow-alt-circle-right"></i>Masukkan Pasien Keruangan</a>
+                    <a href="javascript:;" class="btn btn-primary edit_btn2" id="{{$d->id}}"
+                        title="Masukkan Pasien Keruangan">
+                        <i class="far fa-arrow-alt-circle-right"></i>Masukkan Pasien Keruangan
+                    </a>
+
 
                     @csrf
                     @method('DELETE')

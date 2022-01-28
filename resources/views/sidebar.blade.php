@@ -29,7 +29,7 @@ function open($currect_page)
     <!--begin::Brand-->
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
-        <a href="{{ url('/') }}" class="brand-logo">
+        <a href="{{ url('/') }}/" class="brand-logo">
             <img alt="Logo" src="public/assets/assets/img/logo3.png" style="width:150px;" />
         </a>
         <!--end::Logo-->
@@ -67,7 +67,7 @@ function open($currect_page)
 
 
                 <li class="menu-item <?php active("");?>" aria-haspopup="true">
-                    <a href="../../" class="menu-link">
+                    <a href="{{ url('/') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <i class="nav-icon fas fa-paste"></i>
 

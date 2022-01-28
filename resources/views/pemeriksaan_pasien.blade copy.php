@@ -15,6 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
+
     <base href="{{ url('/') }}/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
@@ -34,10 +35,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="public/assets/assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
     <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
     <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
     <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
@@ -68,8 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
-
-                            <H3>Dashboard</H3>
+                            Odontogram Pasien {{ $biodata->id }} / {{ $biodata->nama }}
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
@@ -78,41 +78,53 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <!--end::Subheader-->
                     <!--begin::Entry-->
+
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
                         <div class="container">
 
+
                             @include('alert')
-                            @include('modal_cari_pasien')
-                            @include('modal_add_pasien2')
-                            @include('modal_masukkan')
+                            @include('modal_add_rm')
+                            @if ($fisik==null)
+                            @include('modal_pemeriksaan_fisik')
+                            @elseif($fisik!=null)
+                            @include('modal_update_pemeriksaan_fisik')
+                            @endif
+
                             <div class="card card-custom">
                                 <div class="card-header card-header-tabs-line">
                                     <div class="card-toolbar">
                                         <ul class="nav nav-tabs nav-bold nav-tabs-line">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#tab1">
-                                                    <span class="nav-icon"><i class="flaticon2-hourglass-1"></i></span>
-                                                    <span class="nav-text">Antrian Pasien</span>
+                                                    <span class="nav-icon"><i class="flaticon-grid-menu"></i></span>
+                                                    <span class="nav-text">Keadaan Umum</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab2">
                                                     <span class="nav-icon"><i class="
-                                                        far fa-arrow-alt-circle-right"></i></span>
-                                                    <span class="nav-text">Masukkan Pasien Keruangan</span>
+                                                       fa la-briefcase-medical"></i></span>
+                                                    <span class="nav-text">Pemeriksaan Ekstra Oral</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab3">
-                                                    <span class="nav-icon"><i class="fa fa-person-booth"></i></span>
-                                                    <span class="nav-text">Pasien dalam Ruangan</span>
+                                                    <span class="nav-icon"><i class="fa la-book-medical"></i></span>
+                                                    <span class="nav-text">Pemeriksaan Intra Oral</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab4">
-                                                    <span class="nav-icon"><i class="fa fa-clipboard-check"></i></span>
-                                                    <span class="nav-text">Pasien Selesai</span>
+                                                    <span class="nav-icon"><i class="fas fa-teeth-open"></i></span>
+                                                    <span class="nav-text">Odontogram</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab5">
+                                                    <span class="nav-icon"><i class="fa la-notes-medical"></i></span>
+                                                    <span class="nav-text">Rencana Perawatan</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -125,22 +137,141 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="tab1" role="tabpanel"
                                             aria-labelledby="tab1">
-                                            @include('tab_antrian')
+
                                         </div>
                                         <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
-                                            @include('tab_masukkan_ruangan')
+                                            ..
                                         </div>
                                         <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
-                                            @include('tab_pasien_in_room')
+
+                                        </div>
+                                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4">
+                                            <div class="card card-custom" id="kt_card_3">
+                                                <div class="card-header">
+                                                    <div class="card-title">
+                                                        <h3 class="card-label">Odontogram</h3>
+                                                    </div>
+                                                    <div class="card-toolbar">
+                                                        <a data-toggle="modal" data-target="#modalFisik"
+                                                            class="btn btn-success font-weight-bolder"
+                                                            style="margin-right:20px">
+                                                            </i>Pemeriksaan Fisik</a>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+
+
+                                                    @include('odontogram')
+
+                                                </div>
+                                                <div class="card-footer">
+                                                    <a href="{{ route('tindakan.show',$biodata->id) }}"
+                                                        class="btn btn-primary">Lanjut
+                                                        Ke Tindakan dan Obat</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5">
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <br>
+                            <div class="card card-custom" id="kt_card_3">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Odontogram</h3>
+                                    </div>
+                                    <div class="card-toolbar">
+                                        <a data-toggle="modal" data-target="#modalFisik"
+                                            class="btn btn-success font-weight-bolder" style="margin-right:20px">
+                                            </i>Pemeriksaan Fisik</a>
 
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+
+                                    @include('odontogram')
+
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{ route('tindakan.show',$biodata->id) }}" class="btn btn-primary">Lanjut
+                                        Ke Tindakan dan Obat</a>
+                                </div>
+
+                            </div>
                             <br>
 
+                            <br>
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap py-5">
+                                    <div class="card-title">
+                                        <h3 class="card-label">Riwayat Pemeriksaan
+                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
+                                        </h3>
+                                    </div>
+                                    <div class="card-toolbar">
 
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-bordered table-checkable" id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tanggal</th>
+                                                <th>Gigi</th>
+                                                <th>Kondisi</th>
+                                                <th>Anamnesa</th>
+                                                <th>Tindakan</th>
+                                                <th>Pemeriksa</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @php
+                                            $nomor = 1;
+                                            @endphp
+                                            @foreach ($dataall as $d)
+                                            <tr id="tr{{$d->id}}">
+                                                <td style=" width:5%">{{ $nomor }}</td>
+
+                                                <td>{{ $d->tanggal }}</td>
+                                                <td>{{ $d->gigi }}</td>
+
+                                                <td><span style="background-color:{{ $d->warna }}">&nbsp;
+                                                        &nbsp;&nbsp;</span> {{
+                                                    $d->kondisi }}({{ $d->singkatan }})</td>
+                                                <td>{{ $d->anamnesa }}</td>
+                                                <td>{{ $d->tindakan }}</td>
+                                                <td>{{ $d->pemeriksa }}</td>
+
+
+                                            </tr>
+
+                                            @php
+                                            $nomor++;
+                                            @endphp
+                                            @endforeach
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                </form>
+                            </div>
 
 
                         </div>
@@ -249,7 +380,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Page Vendors(used by this page)-->
     <script src="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-    <script src="public/assets/assets/plugins/custom/gmaps/gmaps.js"></script>
+
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
     <script src="public/assets/assets/js/pages/widgets.js"></script>
@@ -263,80 +394,66 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
     <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
 
-    <script>
-        $(document).ready(function() 
-        {
-            
-            if (location.hash) {
-  $('a[href=\'' + location.hash + '\']').tab('show');
-}
-var activeTab = localStorage.getItem('activeTab');
-if (activeTab) {
-  $('a[href="' + activeTab + '"]').tab('show');
-}
-
-$('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
-  e.preventDefault()
-  var tab_name = this.getAttribute('href')
-  if (history.pushState) {
-    history.pushState(null, null, tab_name)
-  }
-  else {
-    location.hash = tab_name
-  }
-  localStorage.setItem('activeTab', tab_name)
-
-  $(this).tab('show');
-  return false;
-});
-$(window).on('popstate', function () {
-  var anchor = location.hash ||
-    $('a[data-toggle=\'tab\']').first().attr('href');
-  $('a[href=\'' + anchor + '\']').tab('show');
-});
-            console.log("1");
-            $('#kt_datatable tbody').on('click', 'tr', function () {
-          
-            var data =  $('#kt_datatable').DataTable().row(this).data();
-           // console.log(data);
-            var idp = data[1];
-            var nmp = data[2];
-            var almt = data[4];
-            $('#caripasien').modal('hide');
-            $('#idpasienc').val(idp);
-            $('#idc').val(idp);
-            $('#namapasienc').val(nmp);
-            $('#alamatpasienc').val(almt);
-            });
-        });
-    </script>
+    {{-- <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/js/sb-admin-2.min.js"></script> --}}
 
 
     <script>
-        $(document).on('click', '.edit_btn2', function () {
+        $(document).ready(function () {
+        var warna = 'navy';
+        var ket = "--"
+        $('polygon').attr('stroke', warna);
+        $('polygon').attr('data-ket', ket);
+        $('text').attr('stroke', warna);
+        $('text').attr('fill', warna);
 
-var id = $(this).attr('id');
-$('#modalmasukkan').modal('show')
-console.log(id);
+    
+     
+       var data =@json($data);
+    
+      
+        for(var i=0;i<data.length;i++){
+            var gigi = data[i]['gigi'].split("-");
+            var tes = document.getElementById(gigi[0]);
+            var temp = tes.querySelector('#'+gigi[1]);
+            temp.style.fill =data[i]['warna'];
+            temp.setAttribute('data-ket', data[i]['kondisi']+'('+data[i]['singkatan']+')');
+        }
+    $('polygon').mouseover(function (evt) {
+      //  var svg = $('#svgselect').svg('get');
+        var sector = $(evt.target);
+        var gigi = sector.attr('id');
+        var warna = sector.attr('fill');
+        var nomor = sector.parent().attr('id');
+        var kondisi = sector.attr('data-ket');
+        var urlb = '{{ url('/') }}';
+        $('#nomorgigi').html(nomor);
+        $('#posisigigi').html(gigi);
+        $('#kposisi').html(nomor+'-'+gigi);
+        
+        $('#kondisi-gigi').html(kondisi);
+    
+    });
 
-// var data = $("tr"+id).children("td").map(function() {
-//    return $(this).text();
-// }).get();
+    $('polygon').mouseout(function (evt) {
+      $('#nomorgigi').html('XX');
+      $('#posisigigi').html('X');
+      $('#kondisi-gigi').html('--');
+      $('#kposisi').html('');
+    });
 
-//       console.log('#tr'+id);
-var data = Array();
-var tr = document.getElementById("tr" + id);
-var td = tr.getElementsByTagName("td");
-for (var i = 0; i < td.length; i++) {
-    data[i] = td[i].innerHTML;
-    //  console.log(data[i]);
-}
-
-
-
-
-$('#idantrian').val(id);
-
+      $('polygon').click(function (evt) {
+      const idpasien = {{ $biodata->id }};
+      var baseurl = '{{ url('') }}';
+      var sector = $(evt.target);
+      var judul = document.getElementById('judulgigi');
+    
+      var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
+      judul.innerHTML = posisigigi;
+      $('#addrm').modal('show')
+      $('#gigiid').val(posisigigi);
+     // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
+    });
 
 });
     </script>

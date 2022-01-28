@@ -24,7 +24,10 @@ class AddRekamMedisController extends Controller
         /// redirect jika sukses menyimpan data
         RekamGigi::create($request->all());
         $url = url('/');
-        return redirect("/odontogram/$request->id_pasien")
+
+        return redirect()->back()
         ->with('success','Data berhasil ditambahkan');
+        // return redirect("/odontogram/$request->id_pasien")
+        // ->with('success','Data berhasil ditambahkan');
     }
 }

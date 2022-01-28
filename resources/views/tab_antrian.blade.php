@@ -109,7 +109,7 @@
                         @php
                         $nomor = 1;
                         @endphp
-                        @foreach ($antri as $d)
+                        @foreach ($antrian as $d)
                         <tr id="tr{{$d->id}}">
                             <td>{{ $nomor }}</td>
                             <td>P{{ $d->id }}</td>
@@ -122,8 +122,8 @@
                                     Antri</span>
 
                                 @elseif ($d->status=="2")
-                                <span class="label label-lg font-weight-bold label-light-info label-inline">Dalam
-                                    Pemriksaan</span>
+                                <span class="label label-lg font-weight-bold label-light-success label-inline">Dalam
+                                    Pemeriksaan</span>
 
                                 @endif
                             </td>

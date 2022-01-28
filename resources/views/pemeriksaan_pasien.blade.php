@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
 
-    <base href="{{ url('/') }}/public/assets/">
+    <base href="{{ url('/') }}/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -26,21 +26,23 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+        type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="assets/img/logo2.png" />
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
+    <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+        type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -81,43 +83,99 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--begin::Container-->
                         <div class="container">
 
+
                             @include('alert')
+                            @include('modal_add_rm')
                             @if ($fisik==null)
                             @include('modal_pemeriksaan_fisik')
                             @elseif($fisik!=null)
                             @include('modal_update_pemeriksaan_fisik')
                             @endif
 
-                            <div class="card card-custom" id="kt_card_3">
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        <h3 class="card-label">Odontogram</h3>
+                            <div class="card card-custom">
+                                <div class="card-header card-header-tabs-line">
+                                    <div class="card-toolbar">
+                                        <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tab1">
+                                                    <span class="nav-icon"><i class="flaticon-grid-menu"></i></span>
+                                                    <span class="nav-text">Keadaan Umum</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab2">
+                                                    <span class="nav-icon"><i class="
+                                                       fa la-briefcase-medical"></i></span>
+                                                    <span class="nav-text">Pemeriksaan Ekstra Oral</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab3">
+                                                    <span class="nav-icon"><i class="fa la-book-medical"></i></span>
+                                                    <span class="nav-text">Pemeriksaan Intra Oral</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab4">
+                                                    <span class="nav-icon"><i class="fas fa-teeth-open"></i></span>
+                                                    <span class="nav-text">Odontogram</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab5">
+                                                    <span class="nav-icon"><i class="fa la-notes-medical"></i></span>
+                                                    <span class="nav-text">Rencana Perawatan</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="card-toolbar">
-                                        <a data-toggle="modal" data-target="#modalFisik"
-                                            class="btn btn-success font-weight-bolder" style="margin-right:20px">
-                                            </i>Pemeriksaan Fisik</a>
-
-                                        <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
-                                            data-toggle="tooltip" data-placement="top" title="Toggle Card">
-                                            <i class="ki ki-arrow-down icon-nm"></i>
-                                        </a>
 
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="tab1" role="tabpanel"
+                                            aria-labelledby="tab1">
+
+                                        </div>
+                                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
+                                            @include('tab_ekstra_oral')
+                                        </div>
+                                        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
+                                            @include('tab_intra_oral')
+                                        </div>
+                                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4">
+                                            <div class="card card-custom" id="kt_card_3">
+                                                <div class="card-header">
+                                                    <div class="card-title">
+                                                        <h3 class="card-label">Odontogram</h3>
+                                                    </div>
+
+                                                </div>
+                                                <div class="card-body">
 
 
-                                    @include('odontogram')
+                                                    @include('odontogram')
 
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5">
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <a href="{{ route('tindakan.show',$biodata->id) }}" class="btn btn-primary">Lanjut
                                         Ke Tindakan dan Obat</a>
                                 </div>
-
                             </div>
-                            <br>
+
+
+
 
                             <br>
                             <div class="card card-custom">
@@ -283,30 +341,30 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
+    <script src="public/assets/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="public/assets/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
 
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/widgets.js"></script>
+    <script src="public/assets/assets/js/pages/widgets.js"></script>
     <!--end::Page Scripts-->
 
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers1.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
 
-    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/js/sb-admin-2.min.js"></script>
-    <script src="assets/js/pages/features/cards/tools.js"></script>
+    {{-- <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/js/sb-admin-2.min.js"></script> --}}
+
 
     <script>
         $(document).ready(function () {
@@ -317,9 +375,7 @@ License: You must have a valid license purchased only from themeforest(the above
         $('text').attr('stroke', warna);
         $('text').attr('fill', warna);
 
-        var tes = document.getElementById('18');
-        var temp = tes.querySelector('#C');
-        temp.style.fill ="red";
+    
      
        var data =@json($data);
     
@@ -358,8 +414,13 @@ License: You must have a valid license purchased only from themeforest(the above
       const idpasien = {{ $biodata->id }};
       var baseurl = '{{ url('') }}';
       var sector = $(evt.target);
+      var judul = document.getElementById('judulgigi');
+    
       var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
-      window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
+      judul.innerHTML = posisigigi;
+      $('#addrm').modal('show')
+      $('#gigiid').val(posisigigi);
+     // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
     });
 
 });
