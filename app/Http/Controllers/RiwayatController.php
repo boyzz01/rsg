@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RiwayatController extends Controller
 {
@@ -46,6 +47,12 @@ class RiwayatController extends Controller
     public function show($id)
     {
         //
+        $biodata =DB::table('biodata_pasien')->where('id','=',$id)->first();
+       
+        $riwayat =DB::select("SELECT * FROM `antrian_pasien` JOIN riwayat_medis JOIN invoice WHERE antrian_pasien.id_pasien = riwayat_medis.id_pasien  and antrian_pasien.id_pasien = invoice.id_pasien
+        AND riwayat_medis.id_pasien = $id");
+      
+        return view('riwayat',['riwayat'=>$riwayat,'biodata'=>$biodata]);
     }
 
     /**

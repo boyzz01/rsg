@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
-    <base href="./public/assets/">
+    <base href="{{ url('/') }}/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -25,21 +25,23 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+        type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="assets/img/logo2.png" />
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
+    <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+        type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -67,7 +69,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
 
-                            <H3>Dashboard</H3>
+                            <H3>Riwayat Medis Pasien {{ $biodata->nama }}</H3>
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
@@ -79,62 +81,35 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
                         <div class="container">
-
-                            <div class="row">
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-success"><a href="{{ url('/') }}/pasien">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pasien</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-primary"><a href="{{ url('/') }}/antrian">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Ambil Antrian</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card bg-danger"><a href="{{ url('/') }}/pemeriksaan">
-                                            <div class="card-body text-center">
-                                                <h3 style="color:white">Pemeriksaan</h3>
-                                            </div>
-                                        </a></div>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="card card-custom" id="kt_card_3">
-                                <div class="card-header">
+                            <div class="card card-custom">
+                                <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-
-                                        <h3 class="card-label">Daftar Kunjungan Pasien {{ $now->format('F')}}
-                                            {{ $now->year }}</h3>
+                                        <h3 class="card-label">Riwayat Pasien
+                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
+                                        </h3>
                                     </div>
                                     <div class="card-toolbar">
-                                        <a href="#" class="btn btn-icon btn-sm btn-primary mr-1" data-card-tool="toggle"
-                                            data-toggle="tooltip" data-placement="top" title="Toggle Card">
-                                            <i class="ki ki-arrow-down icon-nm"></i>
-                                        </a>
+                                        <!--begin::Dropdown-->
 
+                                        <!--end::Dropdown-->
+                                        <!--begin::Button-->
+
+                                        <!--end::Button-->
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-separate table-head-custom table-checkable"
-                                        id="kt_datatable">
+                                    <!--begin: Datatable-->
+                                    <table class="table table-bordered table-checkable " id="kt_datatable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama Pasien</th>
-                                                <th>Faktur</th>
-                                                <th>Tanggal</th>
+                                                <th>Tanggal dan Waktu</th>
+                                                <th style="width:5%">Faktur</th>
                                                 <th>Keluhan</th>
-                                                <th>Alamat</th>
+                                                <th>Pemeriksa</th>
 
-                                                {{-- <th>Aksi</th> --}}
+                                                <th>Aksi</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -143,29 +118,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                             @php
                                             $nomor = 1;
                                             @endphp
-                                            @foreach ($data as $d)
-                                            <tr>
-                                                <td style="width:5%">{{ $nomor }}</td>
-                                                <td>{{ $d->nama }}</td>
-                                                <td>{{ $d->tgl_kunjungan }}</td>
-                                                <td>{{ $d->jk }}</td>
-                                                <td>{{ $d->hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
+                                            @foreach ($riwayat as $d)
+                                            <tr id="tr{{$d->id}}">
+                                                <td style=" width:5%">{{ $nomor }}</td>
 
-                                                {{-- <td nowrap="nowrap">
-                                                    <form action="" method="POST">
-                                                        <div class="dropdown dropdown-inline">
+                                                <td>{{ $d->tgl }}</td>
+                                                <td>{{ $d->id }}</td>
+                                                <td>{{ $d->keluhan }}</td>
+                                                <td>{{ $d->dokter_p }}</td>
+                                                <td align="center"><a
+                                                        href="{{ url('') }}/riwayat-pasien/{{ $d->id_trans }}/{{ $d->id_pasien }}"
+                                                        class="badge badge-primary">Detail</a>
+                                                </td>
 
-                                                        </div>
-                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
-                                                            title="Edit Data Pasien">
-                                                            <i class="la la-edit"></i>
-                                                        </a>
-
-
-
-                                                    </form>
-                                                </td> --}}
                                             </tr>
 
                                             @php
@@ -178,10 +143,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                         </tbody>
                                     </table>
+                                    <!--end: Datatable-->
                                 </div>
-
                             </div>
-
                         </div>
                         <!--end::Container-->
                     </div>
@@ -281,26 +245,27 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
+    <script src="public/assets/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="public/assets/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-    <script src="assets/plugins/custom/gmaps/gmaps.js"></script>
+    <script src="public/assets/assets/plugins/custom/gmaps/gmaps.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/widgets.js"></script>
+    <script src="public/assets/assets/js/pages/widgets.js"></script>
     <!--end::Page Scripts-->
 
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers1.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
+
 </body>
 <!--end::Body-->
 

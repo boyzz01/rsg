@@ -13,6 +13,9 @@ use App\Http\Controllers\OdontogramController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemeriksaanController;
+use App\Http\Controllers\RiwayatAllController;
+use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\RiwayatPerawatanController;
 use App\Http\Controllers\RMController;
 use App\Http\Controllers\RPController;
 use App\Http\Controllers\SimbolOdontogramController;
@@ -32,10 +35,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [BaseController::class, 'index']);
-//Route::resource('/dashboard', AdminController::class);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/keluar', [LoginController::class, 'keluar']);
 Route::post('/checkLogin', [LoginController::class, 'check']);
+
+Route::resource('/riwayat-medis',RiwayatController::class);
+Route::get('/riwayat-pasien/{id_trans}/{id_pasien}', [RiwayatAllController::class, 'index']);
+
 Route::resource('/pasien',DataPasienController::class);
 Route::resource('/simbol',SimbolOdontogramController::class);
 Route::get('/odontogram/{id}', [OdontogramController::class, 'index']);
@@ -54,6 +60,3 @@ Route::resource('/rp',RPController::class);
 Route::resource('/invoice',InvoiceController::class);
 Route::resource('/riwayat/{$id}',InvoiceController::class);
 Route::get('/update_status', [StatusController::class, 'updatestatus']);
-
-
-Route::get('/pasien/{id}' , [PasienController::class, 'index']);

@@ -35,10 +35,10 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="public/assets/assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
     <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
     <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="public/assets/assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
     <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
@@ -187,7 +187,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">Riwayat Pemeriksaan
+                                        <h3 class="card-label">Riwayat Pemeriksaan Odontogram
                                             <span class="text-muted pt-2 font-size-sm d-block"></span>
                                         </h3>
                                     </div>

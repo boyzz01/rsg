@@ -136,6 +136,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <i class="la la-edit"></i>
                                                         </a>
 
+                                                        <a href="{{ route('riwayat-medis.show',$d->id) }}"
+                                                            class="btn btn-sm btn-success btn-icon"
+                                                            title="Riwayat Medis">
+                                                            <i class="fas fa-history"></i>
+                                                        </a>
+
                                                         <a href="{{ url('/') }}/riwayat/{{ $d->id }}"
                                                             class="btn btn-sm btn-success btn-icon" title="Odontogram">
                                                             <i class="fas fa-teeth-open"></i>
