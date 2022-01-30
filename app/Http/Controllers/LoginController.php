@@ -12,7 +12,7 @@ class LoginController extends Controller
 
        
         if (session()->has('userid')){
-            return redirect()->route('dashboard.index');
+            return redirect("/");
         }else {
             return view('login'); 
         }

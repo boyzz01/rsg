@@ -15,7 +15,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Head-->
 
 <head>
-    <base href="./public/assets/">
+    <base href="{{ url('/') }}/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -25,21 +25,23 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+        type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="assets/img/logo2.png" />
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
+    <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+        type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -134,11 +136,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <i class="la la-edit"></i>
                                                         </a>
 
-                                                        <a href="javascript:;" class="btn btn-sm btn-info btn-icon"
-                                                            title="Riwayat Medis">
-                                                            <i class="flaticon-file-2"></i>
-                                                        </a>
-                                                        <a href="{{ url('/') }}/odontogram/{{ $d->id }}"
+                                                        <a href="{{ url('/') }}/riwayat/{{ $d->id }}"
                                                             class="btn btn-sm btn-success btn-icon" title="Odontogram">
                                                             <i class="fas fa-teeth-open"></i>
                                                         </a>
@@ -278,28 +276,31 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
+
+    <!--end::Global Config-->
+    <!--begin::Global Theme Bundle(used by all pages)-->
+    <script src="public/assets/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="public/assets/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
-    <script src="assets/plugins/custom/gmaps/gmaps.js"></script>
+    <script src="public/assets/assets/plugins/custom/gmaps/gmaps.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/widgets.js"></script>
+    <script src="public/assets/assets/js/pages/widgets.js"></script>
     <!--end::Page Scripts-->
 
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers1.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
 
-    <script src="assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+    <script src="public/assets/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
 
     <script>
         $(document).on('click', '.edit_btn', function () {

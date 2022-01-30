@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Layanan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class TindakanController extends Controller
+class RiwayatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +34,7 @@ class TindakanController extends Controller
      */
     public function store(Request $request)
     {
-        Layanan::create($request->all());
-        return redirect()->back()
-        ->with('success','Data berhasil ditambahkan');
+        //
     }
 
     /**
@@ -50,10 +46,6 @@ class TindakanController extends Controller
     public function show($id)
     {
         //
-        $biodata = DB::select("SELECT biodata_pasien.* FROM `biodata_pasien` JOIN antrian_pasien WHERE antrian_pasien.id_pasien = biodata_pasien.id AND antrian_pasien.id =$id");
-        $data = DB::table('master_tindakan')->get();
-        $layanan =DB::table('layanan')->join('master_tindakan','layanan.id_tindakan','=','master_tindakan.id')->where('no_trans','=',$id)->get();
-        return view('tindakan',['data'=>$data,'id'=>$id,'biodata'=>$biodata,'layanan'=>$layanan]);
     }
 
     /**
@@ -88,8 +80,5 @@ class TindakanController extends Controller
     public function destroy($id)
     {
         //
-        DB::table('layanan')->where('id_layanan',$id)->delete();
-        return redirect()->back()
-        ->with('success','Data berhasil dihapus');
     }
 }

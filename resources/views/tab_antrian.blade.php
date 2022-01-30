@@ -125,6 +125,10 @@
                                 <span class="label label-lg font-weight-bold label-light-success label-inline">Dalam
                                     Pemeriksaan</span>
 
+                                @elseif ($d->status=="3")
+                                <span class="label label-lg font-weight-bold label-light-danger label-inline">Selesai
+                                    Diperiksa</span>
+
                                 @endif
                             </td>
                         </tr>

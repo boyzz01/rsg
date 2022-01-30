@@ -19,7 +19,7 @@
             <input type="hidden" name="no_trans" value="{{ $idtrans }}" autocomplete="off">
             <label for="namatindakan" class="col-lg-2 col-form-label">Jenis
                 Tindakan</label>
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <select class="form-control select2" id="kt_select2_4" name="id_tindakan" required>
                     <option label="Label"></option>
                     @for ($i = 0 ; $i < count($tindakan) ; $i++) @if ($i==0) <optgroup
@@ -41,8 +41,10 @@
                             @endfor
 
                 </select>
-            </div><label for="jumlahtindakan" class="col-lg-1 col-form-label text-right">Harga</label>
-            <div class="col-lg-2"><input type="number" class="form-control" name="jumlah" value="" id="jumlahtindakan"
+            </div>
+
+            <label for="jumlahtindakan" class="col-lg-2 col-form-label text-right">Elemen Gigi</label>
+            <div class="col-lg-4"><input type="text" class="form-control" name="elemen" value="" id="jumlahtindakan"
                     required="" autocomplete="off"></div>
 
         </div>
@@ -52,7 +54,9 @@
                 <textarea name="ket"></textarea>
 
             </div>
-            <div class="col-lg-2"></div>
+            <label for="jumlahtindakan" class="col-lg-1 col-form-label text-right">Harga</label>
+            <div class="col-lg-2"><input type="number" class="form-control" name="harga" value="" id="jumlahtindakan"
+                    required="" autocomplete="off"></div>
             <div class="col-lg-2"><button type="submit" name="simpantindakan" class="btn btn-primary">Tambah</button>
             </div>
         </div>
@@ -64,9 +68,9 @@
             <thead>
                 <tr>
                     <th>Aksi</th>
-                    <th>Jenis</th>
-                    <th>Nama</th>
-
+                    <th>Jenis Tindakan</th>
+                    <th>Element</th>
+                    <th>Keterangan</th>
                     <th>Harga/Biaya</th>
                     <th>Jumlah</th>
 
@@ -83,10 +87,10 @@
                 $total =0;
                 @endphp
                 @foreach ($layanan as $d)
-                <tr id="tr{{$d->id}}">
+                <tr id="tr{{$d->id_layanan}}">
 
                     <td nowrap="nowrap">
-                        <form action="{{ route('tindakan.destroy', $d->id) }}" method="POST">
+                        <form action="{{ route('tindakan.destroy', $d->id_layanan) }}" method="POST">
 
 
                             @csrf
@@ -98,22 +102,22 @@
 
                         </form>
                     </td>
-                    <td>{{ $d->header }}</td>
-                    <td>{{ $d->nama }}</td>
+                    <td>{{ $d->header }} ({{ $d->nama }})</td>
+                    <td>{{ $d->elemen }}</td>
+                    <td>{{ $d->ket }}</td>
+                    <td>{{ $d->harga }}</td>
+                    <td align="center">1</td>
 
-                    <td>{{ $d->biaya }}</td>
-                    <td align="center">{{ $d->jumlah }}</td>
 
-
-                    <td align="right">{{$d->jumlah*$d->biaya }}</td>
+                    <td align="right">{{1*$d->harga }}</td>
 
 
                 </tr>
 
                 @php
                 $nomor++;
-                $item+=$d->jumlah;
-                $subtotal=$d->jumlah*$d->biaya;
+                $item+=1;
+                $subtotal=1*$d->harga;
                 $total+=$subtotal;
                 @endphp
                 @endforeach
@@ -123,7 +127,7 @@
             <tbody>
 
                 <tr style="margin-top: 20px">
-                    <td colspan="4" align="right"><strong>Total</strong></td>
+                    <td colspan="5" align="right"><strong>Total</strong></td>
                     <td align="center"><strong>{{ $item }} Items</strong></td>
 
                     <td align="right"><strong></strong></td>
@@ -131,7 +135,7 @@
                 <form action="https://demo-sisfonet.xyz/klinik-gigi/layanan/simpantransaksi" method="post"
                     id="formbayar"></form>
                 <tr>
-                    <td colspan="5" align="right"><strong>Total Harus
+                    <td colspan="6" align="right"><strong>Total Harus
                             Dibayar</strong></td>
                     <td align="right"><strong>{{ $total }}</strong></td>
                 </tr>
@@ -150,7 +154,19 @@
                         id="sisaclear" autocomplete="off">
                 </tr> --}}
             </tbody>
-        </table><button type="submit" name="simpantransaksi" id="btnsimpantransaksi"
-            class="btn btn-primary mt-4 mb-2 float-right">Simpan</button>
+        </table>
+        <form action="{{ route('invoice.update',1) }}" method="post" name="form1" autocomplete="off">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <input type="hidden" name="id_invoice" value="{{ $invoice->id_invoice }}" />
+            <input type="hidden" name="id_trans" value="{{ $idtrans }}" />
+            <input type="hidden" name="id_pasien" value="{{ $biodata->id }}" />
+            <input type="hidden" name="total" value="{{ $total }}" />
+            <input type="hidden" name="status" value="1" />
+            <button type="submit" name="submit" id="btnsimpantransaksi"
+                onclick="return confirm('Semua Data Sudah Benar dan Selesaikan Pemeriksaan Pasien?')"
+                class="btn btn-primary mt-4 mb-2 float-right">Simpan</button>
+
+        </form>
     </div>
 </div>

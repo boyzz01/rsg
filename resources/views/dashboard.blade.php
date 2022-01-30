@@ -133,6 +133,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
                                             @include('tab_pasien_in_room')
                                         </div>
+                                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4">
+                                            @include('tab_pasien_selesai')
+                                        </div>
                                     </div>
                                 </div>
                             </div>

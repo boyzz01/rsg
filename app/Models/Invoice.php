@@ -8,12 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Layanan extends Authenticatable
+class Invoice extends Authenticatable
 {
-    public $table = "layanan";
+    public $table = "invoice";
     public $timestamps = false;
+    protected $primaryKey = 'id_invoice';
     protected $fillable = [
-      'no_trans','id_tindakan','harga','id_pasien','elemen','ket'
+      'id_trans','id_pasien','total','status'
     ];
 
 

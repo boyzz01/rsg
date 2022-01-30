@@ -6,6 +6,7 @@ use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\FisikController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MasterTindakanController;
 use App\Http\Controllers\OdontogramController;
@@ -50,6 +51,8 @@ Route::resource('/tindakan',TindakanController::class);
 Route::resource('/transaksi',TindakanController::class);
 Route::resource('/rm',RMController::class);
 Route::resource('/rp',RPController::class);
+Route::resource('/invoice',InvoiceController::class);
+Route::resource('/riwayat/{$id}',InvoiceController::class);
 Route::get('/update_status', [StatusController::class, 'updatestatus']);
 
 

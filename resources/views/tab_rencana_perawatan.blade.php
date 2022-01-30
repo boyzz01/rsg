@@ -88,8 +88,7 @@
             </tbody>
 
 
-        </table><button type="submit" name="simpantransaksi" id="btnsimpantransaksi"
-            class="btn btn-primary mt-4 mb-2 float-right">Simpan</button>
+        </table>
     </div>
 
 </div>

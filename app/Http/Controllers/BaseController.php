@@ -19,6 +19,7 @@ class BaseController extends Controller
                 $antrian = DB::select("SELECT antrian_pasien.*,biodata_pasien.nama FROM `antrian_pasien` JOIN biodata_pasien WHERE antrian_pasien.id_pasien = biodata_pasien.id");
                 $antri = DB::select("SELECT antrian_pasien.*,biodata_pasien.nama FROM `antrian_pasien` JOIN biodata_pasien WHERE antrian_pasien.id_pasien = biodata_pasien.id and antrian_pasien.status = '1' Order by antrian_pasien.mulai_antri ASC ");
                 $ruangan = DB::select("SELECT antrian_pasien.*,biodata_pasien.nama FROM `antrian_pasien` JOIN biodata_pasien WHERE antrian_pasien.id_pasien = biodata_pasien.id and antrian_pasien.status = '2' Order by antrian_pasien.mulai_antri ASC ");
+                $selesai = DB::select("SELECT antrian_pasien.*,biodata_pasien.nama,invoice.status FROM `antrian_pasien` JOIN biodata_pasien JOIN invoice WHERE antrian_pasien.id_pasien = biodata_pasien.id and invoice.id_trans = antrian_pasien.id and antrian_pasien.status = '3' Order by antrian_pasien.mulai_antri ASC ");
 
                 //  $antrian =DB::table('antrian_pasien')->join('biodata_pasien','biodata_pasien.id','=','antrian_pasien.id_pasien')->get();
              
@@ -27,7 +28,7 @@ class BaseController extends Controller
                
                 $now = Carbon::now();
                  
-                return view('dashboard',['now'=>$now,'data'=>$data,'antrian'=>$antrian,'antri'=>$antri,'ruangan'=>$ruangan]);
+                return view('dashboard',['selesai'=>$selesai,'now'=>$now,'data'=>$data,'antrian'=>$antrian,'antri'=>$antri,'ruangan'=>$ruangan]);
             
             }
            
