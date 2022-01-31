@@ -8,12 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Antrian extends Authenticatable
+class Norm extends Authenticatable
 {
-    public $table = "antrian_pasien";
+    public $table = "no_rm";
     public $timestamps = false;
     protected $fillable = [
-        'id','id_pasien','mulai_antri','akhir_antri','status','keluhan','dokter_p'
+        'no','tgl'
     ];
 
 

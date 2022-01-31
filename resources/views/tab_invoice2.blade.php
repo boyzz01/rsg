@@ -6,7 +6,7 @@
 <div class="card-body">
     <div class="row mb-3">
         <div class="col-6">
-            <h5>INV{{ date('Ymd') }}{{ $idtrans }}</h5>
+            <h5>INV{{ $idtrans }}</h5>
         </div>
         <div class="col-6 text-right">
             <h6>{{ $biodata->nama }}</h6>

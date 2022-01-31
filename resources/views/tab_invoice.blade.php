@@ -6,7 +6,7 @@
 <div class="card-body">
     <div class="row mb-3">
         <div class="col-6">
-            <h5>INV{{ date('Ymd') }}{{ $idtrans }}</h5>
+            <h5>INV{{ $idtrans }}</h5>
         </div>
         <div class="col-6 text-right">
             <h6>{{ $biodata->nama }}</h6>
@@ -105,11 +105,15 @@
                     <td>{{ $d->header }} ({{ $d->nama }})</td>
                     <td>{{ $d->elemen }}</td>
                     <td>{{ $d->ket }}</td>
-                    <td>{{ $d->harga }}</td>
+                    <td>{{ number_format( $d->harga,
+                        0
+                        , ',' , '.' ); }}</td>
                     <td align="center">1</td>
 
 
-                    <td align="right">{{1*$d->harga }}</td>
+                    <td align="right">{{ number_format( $d->harga,
+                        0
+                        , ',' , '.' ); }}</td>
 
 
                 </tr>
@@ -132,12 +136,13 @@
 
                     <td align="right"><strong></strong></td>
                 </tr>
-                <form action="https://demo-sisfonet.xyz/klinik-gigi/layanan/simpantransaksi" method="post"
-                    id="formbayar"></form>
+
                 <tr>
                     <td colspan="6" align="right"><strong>Total Harus
                             Dibayar</strong></td>
-                    <td align="right"><strong>{{ $total }}</strong></td>
+                    <td align="right"><strong>{{ number_format( $total,
+                            0
+                            , ',' , '.' ); }}</strong></td>
                 </tr>
 
                 {{-- <tr>
@@ -165,7 +170,7 @@
             <input type="hidden" name="status" value="1" />
             <button type="submit" name="submit" id="btnsimpantransaksi"
                 onclick="return confirm('Semua Data Sudah Benar dan Selesaikan Pemeriksaan Pasien?')"
-                class="btn btn-primary mt-4 mb-2 float-right">Simpan</button>
+                class="btn btn-primary mt-4 mb-2 float-right">Selesaikan Pemeriksaan</button>
 
         </form>
     </div>

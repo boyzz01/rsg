@@ -70,8 +70,8 @@
                                         <div class="col-md-9">
                                             <div
                                                 class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
-                                                <h1 class="display-4 text-white font-weight-boldest mb-10"> INV {{ $inv
-                                                    }}{{ $id }}</h1>
+                                                <h1 class="display-4 text-white font-weight-boldest mb-10"> INV{{ $id }}
+                                                </h1>
 
 
                                             </div>

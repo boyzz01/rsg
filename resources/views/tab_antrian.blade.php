@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-6 mb-4">
+    <div class="col-lg-12 mb-4">
         <div class="card card-custom">
             <div class="card-header">
                 <div class="card-title">
@@ -67,13 +67,13 @@
                         </div>
                     </div>
                 </form>
-                <h6>Belum terdaftar di klinik ini? <a href="" data-toggle="modal" data-target="#modalAdd">Klik
+                <h6>Belum terdaftar di klinik ini? <a href="" data-toggle="modal" data-target="#modalAdd3">Klik
                         disini untuk mengisi biodata</a>.</h6>
             </div>
 
         </div>
     </div>
-    <div class="col-lg-6 mb-4">
+    <div class="col-lg-12 mb-4">
         <div class="card card-custom">
             <div class="card-header flex-wrap py-5">
                 <div class="card-title">
@@ -96,7 +96,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>No Antrian</th>
+                            <th>No Rekam Medis</th>
                             <th>Nama</th>
                             <th>Waktu</th>
                             <th>Status</th>
@@ -112,7 +112,7 @@
                         @foreach ($antrian as $d)
                         <tr id="tr{{$d->id}}">
                             <td>{{ $nomor }}</td>
-                            <td>P{{ $d->id }}</td>
+                            <td>{{ $d->id }}</td>
                             <td>{{ $d->nama }}</td>
                             <td>{{ $d->mulai_antri }}</td>
 

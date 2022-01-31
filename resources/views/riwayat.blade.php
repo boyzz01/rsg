@@ -129,7 +129,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td align="center"><a
                                                         href="{{ url('') }}/riwayat-pasien/{{ $d->id_trans }}/{{ $d->id_pasien }}"
                                                         class="badge badge-primary">Detail</a>
+
+                                                    <a href="{{ url('/') }}/print-invoice/{{ $d->id_trans }}"
+                                                        onclick="window.open('{{ url('/') }}/print-invoice/{{ $d->id_trans }}','_blank', 'toolbar=yes, scrollbar=yes, resizable=yes, top=50, left=50, width=800, height=500');return false;"
+                                                        class="badge badge-success">Print Invoice</a>
+
+
                                                 </td>
+
 
                                             </tr>
 

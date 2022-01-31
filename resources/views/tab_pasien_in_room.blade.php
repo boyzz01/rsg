@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>No</th>
-            <th>Nomor Antrian</th>
+            <th>Nomor Rekam Medis</th>
             <th>Nama</th>
             <th>Waktu</th>
 
@@ -21,7 +21,7 @@
         @foreach ($ruangan as $d)
         <tr id="tr{{$d->id}}">
             <td>{{ $nomor }}</td>
-            <td>A{{ $d->id }}</td>
+            <td>{{ $d->id }}</td>
             <td>{{ $d->nama }}</td>
             <td>{{ $d->mulai_antri }}</td>
 

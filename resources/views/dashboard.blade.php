@@ -84,7 +84,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             @include('alert')
                             @include('modal_cari_pasien')
-                            @include('modal_add_pasien2')
+                            @include('modal_add_pasien3')
                             @include('modal_masukkan')
                             <div class="card card-custom">
                                 <div class="card-header card-header-tabs-line">
@@ -266,6 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
     <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
 
+    <script src="public/assets/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
     <script>
         $(document).ready(function() 
         {
