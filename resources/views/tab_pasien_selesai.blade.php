@@ -51,7 +51,13 @@
                 </form>
                 @endif
 
-                <a href="" class=" btn btn-success font-weight-bold mr-2">
+                {{-- <a href="{{ url('/') }}/print-invoice/{{ $d->id }}" class=" btn btn-success font-weight-bold mr-2">
+                    <i class="fas fa-print"></i> Print Invoice
+                </a> --}}
+
+                <a href="{{ url('/') }}/print-invoice/{{ $d->id }}"
+                    onclick="window.open('{{ url('/') }}/print-invoice/{{ $d->id }}','_blank', 'toolbar=yes, scrollbar=yes, resizable=yes, top=50, left=50, width=800, height=500');return false;"
+                    class=" btn btn-success font-weight-bold mr-2">
                     <i class="fas fa-print"></i> Print Invoice
                 </a>
 

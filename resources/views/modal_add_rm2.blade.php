@@ -60,7 +60,7 @@
                                         required />
                                 </div>
                             </div>
-                            <input type="hidden" name="pemeriksa" value="{{ $antrian->dokter_p}}" />
+                            <input type="hidden" name="pemeriksa" value="{{ session()->get('nama')  }}" />
                             <input type="hidden" name="gigi" id="gigiid" value="" />
                             <input type="hidden" name="id_pasien" value="{{ $biodata->id }}" />
 

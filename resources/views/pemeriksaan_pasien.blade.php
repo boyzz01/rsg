@@ -204,6 +204,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <th>Gigi</th>
                                                 <th>Kondisi</th>
                                                 <th>Anamnesa</th>
+                                                <th>Diagnosis</th>
                                                 <th>Tindakan</th>
                                                 <th>Pemeriksa</th>
 
@@ -226,6 +227,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         &nbsp;&nbsp;</span> {{
                                                     $d->kondisi }}({{ $d->singkatan }})</td>
                                                 <td>{{ $d->anamnesa }}</td>
+                                                <td>{{ $d->diagnosis }}</td>
                                                 <td>{{ $d->tindakan }}</td>
                                                 <td>{{ $d->pemeriksa }}</td>
 

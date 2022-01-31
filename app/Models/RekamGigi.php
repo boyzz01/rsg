@@ -13,7 +13,7 @@ class RekamGigi extends Authenticatable
     public $table = "odontogram_pasien";
     public $timestamps = false;
     protected $fillable = [
-        'id','id_pasien','tanggal','gigi','kondisi','anamnesa','tindakan','pemeriksa'
+        'id','id_pasien','tanggal','gigi','kondisi','anamnesa','diagnosis','tindakan','pemeriksa'
     ];
 
 

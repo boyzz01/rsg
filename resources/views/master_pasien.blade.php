@@ -142,7 +142,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             <i class="fas fa-history"></i>
                                                         </a>
 
-                                                        <a href="{{ url('/') }}/riwayat/{{ $d->id }}"
+                                                        <a href="{{ url('/') }}/odontogram/{{ $d->id }}"
                                                             class="btn btn-sm btn-success btn-icon" title="Odontogram">
                                                             <i class="fas fa-teeth-open"></i>
                                                         </a>

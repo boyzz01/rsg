@@ -271,32 +271,32 @@ License: You must have a valid license purchased only from themeforest(the above
         {
             
             if (location.hash) {
-  $('a[href=\'' + location.hash + '\']').tab('show');
-}
-var activeTab = localStorage.getItem('activeTab');
-if (activeTab) {
-  $('a[href="' + activeTab + '"]').tab('show');
-}
+                    $('a[href=\'' + location.hash + '\']').tab('show');
+                    }
+                    var activeTab = localStorage.getItem('activeTab');
+                    if (activeTab) {
+                    $('a[href="' + activeTab + '"]').tab('show');
+                    }
 
-$('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
-  e.preventDefault()
-  var tab_name = this.getAttribute('href')
-  if (history.pushState) {
-    history.pushState(null, null, tab_name)
-  }
-  else {
-    location.hash = tab_name
-  }
-  localStorage.setItem('activeTab', tab_name)
+                    $('body').on('click', 'a[data-toggle=\'tab\']', function (e) {
+                    e.preventDefault()
+                    var tab_name = this.getAttribute('href')
+                    if (history.pushState) {
+                        history.pushState(null, null, tab_name)
+                    }
+                    else {
+                        location.hash = tab_name
+                    }
+                    localStorage.setItem('activeTab', tab_name)
 
-  $(this).tab('show');
-  return false;
-});
-$(window).on('popstate', function () {
-  var anchor = location.hash ||
-    $('a[data-toggle=\'tab\']').first().attr('href');
-  $('a[href=\'' + anchor + '\']').tab('show');
-});
+                    $(this).tab('show');
+                    return false;
+                    });
+                    $(window).on('popstate', function () {
+                    var anchor = location.hash ||
+                        $('a[data-toggle=\'tab\']').first().attr('href');
+                    $('a[href=\'' + anchor + '\']').tab('show');
+                    });
             console.log("1");
             $('#kt_datatable tbody').on('click', 'tr', function () {
           

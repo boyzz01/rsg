@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <head>
 
-    <base href="../public/assets/">
+    <base href="{{ url('/') }}/">
     <meta charset="utf-8" />
     <title>Edental Clinic | Dashboard</title>
     <meta name="description" content="Aside light theme example" />
@@ -26,21 +26,23 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+        type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="assets/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/base/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/header/menu/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/assets/css/themes/layout/aside/light.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="assets/img/logo2.png" />
-    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="public/assets/assets/img/logo2.png" />
+    <link href="public/assets/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
+        type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -80,7 +82,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
                         <div class="container">
-
+                            @include('alert')
+                            @include('modal_add_rm2')
                             <div class="card card-custom" id="kt_card_3">
                                 <div class="card-header">
                                     <div class="card-title">
@@ -107,7 +110,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                             </div>
                             <br>
-                            @include('pemeriksaan_oral')
+
 
                             <br>
                             <div class="card card-custom">
@@ -130,6 +133,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <th>Gigi</th>
                                                 <th>Kondisi</th>
                                                 <th>Anamnesa</th>
+                                                <th>Diagnosis</th>
                                                 <th>Tindakan</th>
                                                 <th>Pemeriksa</th>
 
@@ -152,6 +156,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         &nbsp;&nbsp;</span> {{
                                                     $d->kondisi }}({{ $d->singkatan }})</td>
                                                 <td>{{ $d->anamnesa }}</td>
+                                                <td>{{ $d->diagnosis }}</td>
                                                 <td>{{ $d->tindakan }}</td>
                                                 <td>{{ $d->pemeriksa }}</td>
 
@@ -169,7 +174,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </tbody>
                                     </table>
                                 </div>
-
                                 </form>
                             </div>
 
@@ -271,32 +275,27 @@ License: You must have a valid license purchased only from themeforest(the above
             "font-family": "Poppins"
         };
     </script>
-    <!--end::Global Config-->
-    <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="assets/plugins/global/plugins.bundle.js"></script>
-    <script src="assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-    <script src="assets/js/scripts.bundle.js"></script>
+    <script src="public/assets/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="public/assets/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
     <!--begin::Page Vendors(used by this page)-->
-    <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 
 
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/widgets.js"></script>
+    <script src="public/assets/assets/js/pages/widgets.js"></script>
     <!--end::Page Scripts-->
 
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="public/assets/assets/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Page Vendors-->
     <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/crud/datatables/basic/headers.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers1.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers2.js"></script>
-    <script src="assets/js/pages/crud/datatables/basic/headers3.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers1.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers2.js"></script>
+    <script src="public/assets/assets/js/pages/crud/datatables/basic/headers3.js"></script>
 
-    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="https://demo-sisfonet.xyz/klinik-gigi/assets/js/sb-admin-2.min.js"></script>
-    <script src="assets/js/pages/features/cards/tools.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -307,9 +306,7 @@ License: You must have a valid license purchased only from themeforest(the above
         $('text').attr('stroke', warna);
         $('text').attr('fill', warna);
 
-        var tes = document.getElementById('18');
-        var temp = tes.querySelector('#C');
-        temp.style.fill ="red";
+    
      
        var data =@json($data);
     
@@ -348,8 +345,13 @@ License: You must have a valid license purchased only from themeforest(the above
       const idpasien = {{ $biodata->id }};
       var baseurl = '{{ url('') }}';
       var sector = $(evt.target);
+      var judul = document.getElementById('judulgigi');
+    
       var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
-      window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
+      judul.innerHTML = posisigigi;
+      $('#addrm').modal('show')
+      $('#gigiid').val(posisigigi);
+     // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
     });
 
 });

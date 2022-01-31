@@ -84,8 +84,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="container">
 
 
-                            @include('alert')
-                            @include('modal_add_rm')
 
 
                             <div class="card card-custom">
@@ -111,12 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <span class="nav-text">Pemeriksaan Intra Oral</span>
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tab4">
-                                                    <span class="nav-icon"><i class="fas fa-teeth-open"></i></span>
-                                                    <span class="nav-text">Odontogram</span>
-                                                </a>
-                                            </li>
+
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab5">
                                                     <span class="nav-icon"><i class="fa la-notes-medical"></i></span>
@@ -148,24 +141,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
                                             @include('tab_intra_oral2')
                                         </div>
-                                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4">
-                                            <div class="card card-custom" id="kt_card_3">
-                                                <div class="card-header">
-                                                    <div class="card-title">
-                                                        <h3 class="card-label">Odontogram</h3>
-                                                    </div>
 
-                                                </div>
-                                                <div class="card-body">
-
-
-                                                    @include('odontogram')
-
-                                                </div>
-
-
-                                            </div>
-                                        </div>
                                         <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5">
                                             @include('tab_rencana_perawatan2')
                                         </div>
@@ -184,68 +160,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                             <br>
-                            <div class="card card-custom">
-                                <div class="card-header flex-wrap py-5">
-                                    <div class="card-title">
-                                        <h3 class="card-label">Riwayat Pemeriksaan
-                                            <span class="text-muted pt-2 font-size-sm d-block"></span>
-                                        </h3>
-                                    </div>
-                                    <div class="card-toolbar">
-
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered table-checkable" id="kt_datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Tanggal</th>
-                                                <th>Gigi</th>
-                                                <th>Kondisi</th>
-                                                <th>Anamnesa</th>
-                                                <th>Tindakan</th>
-                                                <th>Pemeriksa</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                            @php
-                                            $nomor = 1;
-                                            @endphp
-                                            @foreach ($dataall as $d)
-                                            <tr id="tr{{$d->id}}">
-                                                <td style=" width:5%">{{ $nomor }}</td>
-
-                                                <td>{{ $d->tanggal }}</td>
-                                                <td>{{ $d->gigi }}</td>
-
-                                                <td><span style="background-color:{{ $d->warna }}">&nbsp;
-                                                        &nbsp;&nbsp;</span> {{
-                                                    $d->kondisi }}({{ $d->singkatan }})</td>
-                                                <td>{{ $d->anamnesa }}</td>
-                                                <td>{{ $d->tindakan }}</td>
-                                                <td>{{ $d->pemeriksa }}</td>
-
-
-                                            </tr>
-
-                                            @php
-                                            $nomor++;
-                                            @endphp
-                                            @endforeach
-
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                </form>
-                            </div>
 
 
                         </div>
