@@ -2,7 +2,7 @@
 
     <h5>Rencana Perawatan</h5>
     <br>
-    <form action="{{ route('rm.update',4) }}" method="post" name="form1" autocomplete="off">
+    <form action="{{ route('rm.update', 4) }}" method="post" name="form1" autocomplete="off">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <div class="form-group row">
@@ -12,13 +12,13 @@
             <input type="hidden" id='tgl' name="tgl" value="{{ date('Y-m-d') }}">
             <label class="col-2 col-form-label">Diagnosa</label>
             <div class="col-4">
-                <input class="form-control" disabled type="text" value="" placeholder="Diagnosa" name="diagnosa"
+                <input class="form-control" type="text" value="" placeholder="Diagnosa" name="diagnosa"
                     id="example-text-input" />
             </div>
 
             <label for="jumlahtindakan" class="col-lg-2 col-form-label text-right">Perawatan</label>
-            <div class="col-lg-4"><input type="text" class="form-control" disabled name="perawatan"
-                    placeholder="Perawatan" id="jumlahtindakan" required="" autocomplete="off"></div>
+            <div class="col-lg-4"><input type="text" class="form-control" name="perawatan" placeholder="Perawatan"
+                    id="jumlahtindakan" required="" autocomplete="off"></div>
 
         </div>
 
@@ -26,10 +26,11 @@
 
             <label class="col-2 col-form-label">Keterangan</label>
             <div class="col-3">
-                <textarea disabled name="keterangan" placeholder="Keterangan jika ada"></textarea>
+                <textarea name="keterangan" placeholder="Keterangan jika ada"></textarea>
             </div>
             <div class="col-lg-2"></div>
-
+            <div class="col-lg-2"><button type="Submit" name="Submit" class="btn btn-primary">Tambah</button>
+            </div>
 
         </div>
 
@@ -51,38 +52,38 @@
 
 
                 @php
-                $nomor = 1;
-                $item = 0;
-                $total =0;
+                    $nomor = 1;
+                    $item = 0;
+                    $total = 0;
                 @endphp
                 @foreach ($rp as $d)
-                <tr id="tr{{$d->id}}">
+                    <tr id="tr{{ $d->id }}">
 
-                    <td nowrap="nowrap" style="width: 8%">
-                        <form action="{{ route('rp.destroy', $d->id) }}" method="POST">
-
-
-                            @csrf
-                            @method('DELETE')
-                            <button type="" disabled class="btn btn-sm btn-danger btn-icon" title="Delete"> <i
-                                    class="la la-trash">
-                                </i>
-                            </button>
-
-                        </form>
-                    </td>
-                    <td>{{ $d->diagnosa }}</td>
-                    <td>{{ $d->perawatan }}</td>
-                    <td>{{ $d->keterangan }}</td>
-                    <td>{{ $d->tgl }}</td>
+                        <td nowrap="nowrap" style="width: 8%">
+                            <form action="{{ route('rp.destroy', $d->id) }}" method="POST">
 
 
-                </tr>
+                                @csrf
+                                @method('DELETE')
+                                <button type="" class="btn btn-sm btn-danger btn-icon" title="Delete"> <i
+                                        class="la la-trash">
+                                    </i>
+                                </button>
 
-                @php
-                $nomor++;
+                            </form>
+                        </td>
+                        <td>{{ $d->diagnosa }}</td>
+                        <td>{{ $d->perawatan }}</td>
+                        <td>{{ $d->keterangan }}</td>
+                        <td>{{ $d->tgl }}</td>
 
-                @endphp
+
+                    </tr>
+
+                    @php
+                        $nomor++;
+                        
+                    @endphp
                 @endforeach
 
             </tbody>

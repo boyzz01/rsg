@@ -92,33 +92,38 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <ul class="nav nav-tabs nav-bold nav-tabs-line">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#tab1">
-                                                    <span class="nav-icon"><i class="flaticon-grid-menu"></i></span>
+                                                    <span class="nav-icon"><i
+                                                            class="flaticon-grid-menu"></i></span>
                                                     <span class="nav-text">Riwayat Medis</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab2">
-                                                    <span class="nav-icon"><i class="
+                                                    <span class="nav-icon"><i
+                                                            class="
                                                        fa la-briefcase-medical"></i></span>
                                                     <span class="nav-text">Pemeriksaan Ekstra Oral</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab3">
-                                                    <span class="nav-icon"><i class="fa la-book-medical"></i></span>
+                                                    <span class="nav-icon"><i
+                                                            class="fa la-book-medical"></i></span>
                                                     <span class="nav-text">Pemeriksaan Intra Oral</span>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab5">
-                                                    <span class="nav-icon"><i class="fa la-notes-medical"></i></span>
+                                                    <span class="nav-icon"><i
+                                                            class="fa la-notes-medical"></i></span>
                                                     <span class="nav-text">Rencana Perawatan</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#tab6">
-                                                    <span class="nav-icon"><i class="
+                                                    <span class="nav-icon"><i
+                                                            class="
                                                         fas fa-file-invoice-dollar"></i></span>
                                                     <span class="nav-text">Invoice</span>
                                                 </a>
@@ -287,98 +292,103 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
     <script>
-        $(document).ready(function () {
-        var warna = 'navy';
-        var ket = "--"
-        $('polygon').attr('stroke', warna);
-        $('polygon').attr('data-ket', ket);
-        $('text').attr('stroke', warna);
-        $('text').attr('fill', warna);
+        $(document).ready(function() {
+            var warna = 'navy';
+            var ket = "--"
+            $('polygon').attr('stroke', warna);
+            $('polygon').attr('data-ket', ket);
+            $('text').attr('stroke', warna);
+            $('text').attr('fill', warna);
 
-    
-     
-       var data =@json($data);
-    
-      
-        for(var i=0;i<data.length;i++){
-            var gigi = data[i]['gigi'].split("-");
-            var tes = document.getElementById(gigi[0]);
-            var temp = tes.querySelector('#'+gigi[1]);
-            temp.style.fill =data[i]['warna'];
-            temp.setAttribute('data-ket', data[i]['kondisi']+'('+data[i]['singkatan']+')');
-        }
-    $('polygon').mouseover(function (evt) {
-      //  var svg = $('#svgselect').svg('get');
-        var sector = $(evt.target);
-        var gigi = sector.attr('id');
-        var warna = sector.attr('fill');
-        var nomor = sector.parent().attr('id');
-        var kondisi = sector.attr('data-ket');
-        var urlb = '{{ url('/') }}';
-        $('#nomorgigi').html(nomor);
-        $('#posisigigi').html(gigi);
-        $('#kposisi').html(nomor+'-'+gigi);
-        
-        $('#kondisi-gigi').html(kondisi);
-    
-    });
 
-    $('polygon').mouseout(function (evt) {
-      $('#nomorgigi').html('XX');
-      $('#posisigigi').html('X');
-      $('#kondisi-gigi').html('--');
-      $('#kposisi').html('');
-    });
 
-      $('polygon').click(function (evt) {
-      const idpasien = {{ $biodata->id }};
-      var baseurl = '{{ url('') }}';
-      var sector = $(evt.target);
-      var judul = document.getElementById('judulgigi');
-    
-      var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
-      judul.innerHTML = posisigigi;
-      $('#addrm').modal('show')
-      $('#gigiid').val(posisigigi);
-     // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
-    });
+            var data = @json($data);
 
-});
+
+            for (var i = 0; i < data.length; i++) {
+                var gigi = data[i]['gigi'].split("-");
+                var tes = document.getElementById(gigi[0]);
+                var temp = tes.querySelector('#' + gigi[1]);
+                temp.style.fill = data[i]['warna'];
+                temp.setAttribute('data-ket', data[i]['kondisi'] + '(' + data[i]['singkatan'] + ')');
+            }
+            $('polygon').mouseover(function(evt) {
+                //  var svg = $('#svgselect').svg('get');
+                var sector = $(evt.target);
+                var gigi = sector.attr('id');
+                var warna = sector.attr('fill');
+                var nomor = sector.parent().attr('id');
+                var kondisi = sector.attr('data-ket');
+                var urlb = '{{ url('/') }}';
+                $('#nomorgigi').html(nomor);
+                $('#posisigigi').html(gigi);
+                $('#kposisi').html(nomor + '-' + gigi);
+
+                $('#kondisi-gigi').html(kondisi);
+
+            });
+
+            $('polygon').mouseout(function(evt) {
+                $('#nomorgigi').html('XX');
+                $('#posisigigi').html('X');
+                $('#kondisi-gigi').html('--');
+                $('#kposisi').html('');
+            });
+
+            $('polygon').click(function(evt) {
+                const idpasien = {{ $biodata->id }};
+                var baseurl = '{{ url('') }}';
+                var sector = $(evt.target);
+                var judul = document.getElementById('judulgigi');
+
+                var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
+                judul.innerHTML = posisigigi;
+                $('#addrm').modal('show')
+                $('#gigiid').val(posisigigi);
+                // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
+            });
+
+
+
+        });
     </script>
 
     <script>
         // Class definition
-           
 
-// Class definition
-            var KTSelect2 = function() {
+
+        // Class definition
+        var KTSelect2 = function() {
             // Private functions
             var demos = function() {
-            // basic
-            $('#kt_select2_4').select2({
-            placeholder: "Jenis Tindakan",
-            allowClear: true
-            });
+                // basic
+                $('#kt_select2_4').select2({
+                    placeholder: "Jenis Tindakan",
+                    allowClear: true
+                });
 
 
+                $('#kt_select2_4').change(function() {
+                    // alert($(this).find(':selected').data('harga'));
+                    var value = $(this).find(':selected').data('harga');
+                    $('#harga').val(value);
+                });
             }
 
-     
+
 
             // Public functions
             return {
-            init: function() {
-            demos();
-            }
+                init: function() {
+                    demos();
+                }
             };
-            }();
+        }();
 
-            // Initialization
-            jQuery(document).ready(function() {
+        // Initialization
+        jQuery(document).ready(function() {
             KTSelect2.init();
-            });
-
-
+        });
     </script>
     {{-- <script>
         $(document).ready(function() 

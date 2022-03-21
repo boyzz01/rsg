@@ -34,6 +34,7 @@
         color: #ffffff !important;
         color: #000 !important;
     }
+
 </style>
 
 <body id="kt_body">
@@ -59,7 +60,7 @@
                     <!--begin::Entry-->
                     <div class="d-flex flex-column-fluid">
                         <!--begin::Container-->
-                        <div class="container">
+                        <div class="" style="width: 100%;">
                             <!-- begin::Card-->
                             <div class="card card-custom overflow-hidden">
                                 <div class="card-body p-0">
@@ -70,7 +71,8 @@
                                         <div class="col-md-9">
                                             <div
                                                 class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
-                                                <h1 class="display-4 text-white font-weight-boldest mb-10"> INV{{ $id }}
+                                                <h1 class="display-4 text-white font-weight-boldest mb-10">
+                                                    INV{{ $id }}
                                                 </h1>
 
 
@@ -78,16 +80,22 @@
                                             <div class="border-bottom w-100 opacity-20"></div>
                                             <div class="d-flex justify-content-between text-white pt-6">
                                                 <div class="d-flex flex-column flex-root">
-                                                    <span class="font-weight-bolde mb-2">Tanggal</span>
-                                                    <span class="opacity-70">{{ $tgl }}</span>
+                                                    <span class="font-weight-bolde mb-2"
+                                                        style="font-size: 40px">Tanggal</span>
+                                                    <span class="opacity-70"
+                                                        style="font-size: 40px">{{ $tgl }}</span>
                                                 </div>
                                                 <div class="d-flex flex-column flex-root">
-                                                    <span class="font-weight-bolder mb-2">Dokter</span>
-                                                    <span class="opacity-70">{{ $antri->dokter_p }}</span>
+                                                    <span class="font-weight-bolder mb-2"
+                                                        style="font-size: 40px">Dokter</span>
+                                                    <span class="opacity-70"
+                                                        style="font-size: 40px">{{ $antri->dokter_p }}</span>
                                                 </div>
                                                 <div class="d-flex flex-column flex-root">
-                                                    <span class="font-weight-bolder mb-2">Pasien</span>
-                                                    <span class="opacity-70">{{ $biodata->nama }}
+                                                    <span class="font-weight-bolder mb-2"
+                                                        style="font-size: 40px">Pasien</span>
+                                                    <span class="opacity-70"
+                                                        style="font-size: 40px">{{ $biodata->nama }}
 
                                                 </div>
                                             </div>
@@ -101,32 +109,38 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th class="pl-0 font-weight-bold text-muted text-uppercase">
+                                                            <th class="font-weight-boldest font-size-lg text-uppercase "
+                                                                style="font-size: 30px ;width:60%">
                                                                 Tindakan/Layanan Medis</th>
-                                                            <th
-                                                                class="text-right font-weight-bold text-muted text-uppercase">
+                                                            <th class="font-weight-boldest font-size-lg text-uppercase"
+                                                                style="font-size: 30px ;width:5%">
                                                                 Jumlah</th>
-                                                            <th
-                                                                class="text-right font-weight-bold text-muted text-uppercase">
+                                                            <th class="text-right font-weight-boldest font-size-lg text-uppercase"
+                                                                style="font-size: 30px ;width:25%">
                                                                 Biaya</th>
-                                                            <th
-                                                                class="text-right pr-0 font-weight-bold text-muted text-uppercase">
-                                                                Subtotal</th>
+                                                            {{-- <th class="text-right pr-0 font-weight-bold text-muted text-uppercase"
+                                                                style="font-size: 30px">
+                                                                Subtotal</th> --}}
                                                         </tr>
                                                     </thead>
                                                     <tbody>
 
-                                                        @foreach ( $layanan as $d )
-                                                        <tr class="font-weight-boldest font-size-lg">
-                                                            <td class="pl-0 pt-7">{{ $d->header }} ({{ $d->nama}})</td>
-                                                            <td class="text-right pt-7">{{ 1 }}</td>
-                                                            <td class="text-right pt-7">Rp {{ number_format( $d->harga,
-                                                                0
-                                                                , ',' , '.' ); }}</td>
-                                                            <td class="text-danger pr-0 pt-7 text-right">Rp {{
-                                                                number_format( $d->harga, 0
-                                                                , ',' , '.' ); }}</td>
-                                                        </tr>
+                                                        @foreach ($layanan as $d)
+                                                            <tr class="font-weight-boldest font-size-lg"
+                                                                style="font-size: 25px">
+                                                                <td class="pl-0 pt-7">{{ $d->header }}
+                                                                    ({{ $d->nama }})
+                                                                </td>
+                                                                <td class="text-right pt-7" style="font-size: 30px">
+                                                                    {{ 1 }}</td>
+                                                                <td class="text-right pt-7">Rp
+                                                                    {{ number_format($d->harga, 0, ',', '.') }}
+                                                                </td>
+                                                                {{-- <td class="text-danger pr-0 pt-7 text-right"
+                                                                    style="font-size: 30px">Rp
+                                                                    {{ number_format($d->harga, 0, ',', '.') }}
+                                                                </td> --}}
+                                                            </tr>
                                                         @endforeach
 
                                                     </tbody>
@@ -136,14 +150,15 @@
 
 
                                                         <tr>
-                                                            <td colspan="3" align="right"> <span
-                                                                    class="font-size-lg font-weight-bolder mb-1">TOTAL
+                                                            <td colspan="2" align="right"> <span
+                                                                    class="font-size-lg font-weight-bolder mb-1"
+                                                                    style="font-size: 30px">TOTAL
                                                                     PEMBAYARAN</span>
                                                             <td align="right"> <span
-                                                                    class="font-size-h2 font-weight-boldest text-danger mb-1">Rp
-                                                                    {{ number_format( $invoice->total,
-                                                                    0
-                                                                    , ',' , '.' ); }} </span></td>
+                                                                    class="font-size-lg font-weight-boldest text-danger mb-1"
+                                                                    style="font-size: 40px">Rp
+                                                                    {{ number_format($invoice->total, 0, ',', '.') }}
+                                                                </span></td>
                                                         </tr>
 
 
@@ -189,63 +204,63 @@
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
         var KTAppSettings = {
-			"breakpoints": {
-				"sm": 576,
-				"md": 768,
-				"lg": 992,
-				"xl": 1200,
-				"xxl": 1400
-			},
-			"colors": {
-				"theme": {
-					"base": {
-						"white": "#ffffff",
-						"primary": "#3699FF",
-						"secondary": "#E5EAEE",
-						"success": "#1BC5BD",
-						"info": "#8950FC",
-						"warning": "#FFA800",
-						"danger": "#F64E60",
-						"light": "#E4E6EF",
-						"dark": "#181C32"
-					},
-					"light": {
-						"white": "#ffffff",
-						"primary": "#E1F0FF",
-						"secondary": "#EBEDF3",
-						"success": "#C9F7F5",
-						"info": "#EEE5FF",
-						"warning": "#FFF4DE",
-						"danger": "#FFE2E5",
-						"light": "#F3F6F9",
-						"dark": "#D6D6E0"
-					},
-					"inverse": {
-						"white": "#ffffff",
-						"primary": "#ffffff",
-						"secondary": "#3F4254",
-						"success": "#ffffff",
-						"info": "#ffffff",
-						"warning": "#ffffff",
-						"danger": "#ffffff",
-						"light": "#464E5F",
-						"dark": "#ffffff"
-					}
-				},
-				"gray": {
-					"gray-100": "#F3F6F9",
-					"gray-200": "#EBEDF3",
-					"gray-300": "#E4E6EF",
-					"gray-400": "#D1D3E0",
-					"gray-500": "#B5B5C3",
-					"gray-600": "#7E8299",
-					"gray-700": "#5E6278",
-					"gray-800": "#3F4254",
-					"gray-900": "#181C32"
-				}
-			},
-			"font-family": "Poppins"
-		};
+            "breakpoints": {
+                "sm": 576,
+                "md": 768,
+                "lg": 992,
+                "xl": 1200,
+                "xxl": 1400
+            },
+            "colors": {
+                "theme": {
+                    "base": {
+                        "white": "#ffffff",
+                        "primary": "#3699FF",
+                        "secondary": "#E5EAEE",
+                        "success": "#1BC5BD",
+                        "info": "#8950FC",
+                        "warning": "#FFA800",
+                        "danger": "#F64E60",
+                        "light": "#E4E6EF",
+                        "dark": "#181C32"
+                    },
+                    "light": {
+                        "white": "#ffffff",
+                        "primary": "#E1F0FF",
+                        "secondary": "#EBEDF3",
+                        "success": "#C9F7F5",
+                        "info": "#EEE5FF",
+                        "warning": "#FFF4DE",
+                        "danger": "#FFE2E5",
+                        "light": "#F3F6F9",
+                        "dark": "#D6D6E0"
+                    },
+                    "inverse": {
+                        "white": "#ffffff",
+                        "primary": "#ffffff",
+                        "secondary": "#3F4254",
+                        "success": "#ffffff",
+                        "info": "#ffffff",
+                        "warning": "#ffffff",
+                        "danger": "#ffffff",
+                        "light": "#464E5F",
+                        "dark": "#ffffff"
+                    }
+                },
+                "gray": {
+                    "gray-100": "#F3F6F9",
+                    "gray-200": "#EBEDF3",
+                    "gray-300": "#E4E6EF",
+                    "gray-400": "#D1D3E0",
+                    "gray-500": "#B5B5C3",
+                    "gray-600": "#7E8299",
+                    "gray-700": "#5E6278",
+                    "gray-800": "#3F4254",
+                    "gray-900": "#181C32"
+                }
+            },
+            "font-family": "Poppins"
+        };
     </script>
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
@@ -256,8 +271,7 @@
 </body>
 <!--end::Body-->
 <script type="text/javascript">
-    window.print();
-
+    // window.print();
 </script>
 
 </html>

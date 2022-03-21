@@ -34,7 +34,7 @@
                 <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2"
                     id="kt_quick_user_toggle">
                     <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
-                        <a class="nav-link" href="../../keluar" role="button">
+                        <a class="nav-link" href="{{ url('/') }}/keluar" role="button">
                             <i class="fas fa-sign-out-alt"></i>
                         </a>
                     </span>

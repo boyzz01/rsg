@@ -143,29 +143,30 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                                             @php
-                                            $nomor = 1;
+                                                $nomor = 1;
                                             @endphp
                                             @foreach ($dataall as $d)
-                                            <tr id="tr{{$d->id}}">
-                                                <td style=" width:5%">{{ $nomor }}</td>
+                                                <tr id="tr{{ $d->id }}">
+                                                    <td style=" width:5%">{{ $nomor }}</td>
 
-                                                <td>{{ $d->tanggal }}</td>
-                                                <td>{{ $d->gigi }}</td>
+                                                    <td>{{ $d->tanggal }}</td>
+                                                    <td>{{ $d->gigi }}</td>
 
-                                                <td><span style="background-color:{{ $d->warna }}">&nbsp;
-                                                        &nbsp;&nbsp;</span> {{
-                                                    $d->kondisi }}({{ $d->singkatan }})</td>
-                                                <td>{{ $d->anamnesa }}</td>
-                                                <td>{{ $d->diagnosis }}</td>
-                                                <td>{{ $d->tindakan }}</td>
-                                                <td>{{ $d->pemeriksa }}</td>
+                                                    <td><span style="background-color:{{ $d->warna }}">&nbsp;
+                                                            &nbsp;&nbsp;</span>
+                                                        {{                                                         $d->kondisi }}({{ $d->singkatan }})
+                                                    </td>
+                                                    <td>{{ $d->anamnesa }}</td>
+                                                    <td>{{ $d->diagnosis }}</td>
+                                                    <td>{{ $d->tindakan }}</td>
+                                                    <td>{{ $d->pemeriksa }}</td>
 
 
-                                            </tr>
+                                                </tr>
 
-                                            @php
-                                            $nomor++;
-                                            @endphp
+                                                @php
+                                                    $nomor++;
+                                                @endphp
                                             @endforeach
 
 
@@ -298,63 +299,65 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
     <script>
-        $(document).ready(function () {
-        var warna = 'navy';
-        var ket = "--"
-        $('polygon').attr('stroke', warna);
-        $('polygon').attr('data-ket', ket);
-        $('text').attr('stroke', warna);
-        $('text').attr('fill', warna);
+        $(document).ready(function() {
+            var warna = 'navy';
+            var ket = "--"
+            $('polygon').attr('stroke', warna);
+            $('polygon').attr('data-ket', ket);
+            $('text').attr('stroke', warna);
+            $('text').attr('fill', warna);
 
-    
-     
-       var data =@json($data);
-    
-      
-        for(var i=0;i<data.length;i++){
-            var gigi = data[i]['gigi'].split("-");
-            var tes = document.getElementById(gigi[0]);
-            var temp = tes.querySelector('#'+gigi[1]);
-            temp.style.fill =data[i]['warna'];
-            temp.setAttribute('data-ket', data[i]['kondisi']+'('+data[i]['singkatan']+')');
-        }
-    $('polygon').mouseover(function (evt) {
-      //  var svg = $('#svgselect').svg('get');
-        var sector = $(evt.target);
-        var gigi = sector.attr('id');
-        var warna = sector.attr('fill');
-        var nomor = sector.parent().attr('id');
-        var kondisi = sector.attr('data-ket');
-        var urlb = '{{ url('/') }}';
-        $('#nomorgigi').html(nomor);
-        $('#posisigigi').html(gigi);
-        $('#kposisi').html(nomor+'-'+gigi);
-        
-        $('#kondisi-gigi').html(kondisi);
-    
-    });
 
-    $('polygon').mouseout(function (evt) {
-      $('#nomorgigi').html('XX');
-      $('#posisigigi').html('X');
-      $('#kondisi-gigi').html('--');
-      $('#kposisi').html('');
-    });
 
-      $('polygon').click(function (evt) {
-      const idpasien = {{ $biodata->id }};
-      var baseurl = '{{ url('') }}';
-      var sector = $(evt.target);
-      var judul = document.getElementById('judulgigi');
-    
-      var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
-      judul.innerHTML = posisigigi;
-      $('#addrm').modal('show')
-      $('#gigiid').val(posisigigi);
-     // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
-    });
+            var data = @json($data);
 
-});
+
+            for (var i = 0; i < data.length; i++) {
+                var gigi = data[i]['gigi'].split("-");
+                var tes = document.getElementById(gigi[0]);
+                var temp = tes.querySelector('#' + gigi[1]);
+                temp.style.fill = data[i]['warna'];
+                temp.setAttribute('data-ket', data[i]['kondisi'] + '(' + data[i]['singkatan'] + ')');
+
+                console.log(data[i]['kondisi']);
+            }
+            $('polygon').mouseover(function(evt) {
+                //  var svg = $('#svgselect').svg('get');
+                var sector = $(evt.target);
+                var gigi = sector.attr('id');
+                var warna = sector.attr('fill');
+                var nomor = sector.parent().attr('id');
+                var kondisi = sector.attr('data-ket');
+                var urlb = '{{ url('/') }}';
+                $('#nomorgigi').html(nomor);
+                $('#posisigigi').html(gigi);
+                $('#kposisi').html(nomor + '-' + gigi);
+
+                $('#kondisi-gigi').html(kondisi);
+
+            });
+
+            $('polygon').mouseout(function(evt) {
+                $('#nomorgigi').html('XX');
+                $('#posisigigi').html('X');
+                $('#kondisi-gigi').html('--');
+                $('#kposisi').html('');
+            });
+
+            $('polygon').click(function(evt) {
+                const idpasien = {{ $biodata->id }};
+                var baseurl = '{{ url('') }}';
+                var sector = $(evt.target);
+                var judul = document.getElementById('judulgigi');
+
+                var posisigigi = sector.parent().attr('id') + '-' + sector.attr('id')
+                judul.innerHTML = posisigigi;
+                $('#addrm').modal('show')
+                $('#gigiid').val(posisigigi);
+                // window.location.href = baseurl+'/addrekammedis/'+idpasien+'/'+posisigigi;
+            });
+
+        });
     </script>
 </body>
 <!--end::Body-->

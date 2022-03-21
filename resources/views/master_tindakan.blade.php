@@ -120,10 +120,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-form-label">Biaya</label>
-                                                            <input type="text"
-                                                                class="form-control form-control-normal uang"
-                                                                name="biaya" id="nikpeserta" placeholder="Biaya"
-                                                                required />
+                                                            <input type="number"
+                                                                class="form-control form-control-normal" name="biaya"
+                                                                id="" placeholder="Biaya" required />
                                                         </div>
 
 
@@ -144,7 +143,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <section>
                                 <div class="modal fade" id="edit" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <form action="{{ route('data-tindakan.update',1) }}" method="post" name="form1"
+                                    <form action="{{ route('data-tindakan.update', 1) }}" method="post" name="form1"
                                         autocomplete="off">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
@@ -180,10 +179,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-form-label">Biaya</label>
-                                                            <input type="text"
-                                                                class="form-control form-control-normal uang"
-                                                                name="biaya" value="" id="biaya" placeholder="Biaya"
-                                                                required />
+                                                            <input type="number"
+                                                                class="form-control form-control-normal" name="biaya"
+                                                                value="" id="biaya" placeholder="Biaya" required />
                                                         </div>
 
 
@@ -236,47 +234,47 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                                             @php
-                                            $nomor = 1;
+                                                $nomor = 1;
                                             @endphp
                                             @foreach ($data as $d)
-                                            <tr id="tr{{$d->id}}">
-                                                <td style=" width:5%">{{ $nomor }}</td>
+                                                <tr id="tr{{ $d->id }}">
+                                                    <td style=" width:5%">{{ $nomor }}</td>
 
-                                                <td>{{ $d->header }}</td>
+                                                    <td>{{ $d->header }}</td>
 
-                                                <td>{{ $d->nama}}</td>
-                                                <td>{{ $d->biaya }}
-                                                </td>
+                                                    <td>{{ $d->nama }}</td>
+                                                    <td>{{ $d->biaya }}
+                                                    </td>
 
-                                                <td nowrap="nowrap">
-                                                    <form action="{{ route('data-tindakan.destroy', $d->id) }}"
-                                                        method="POST">
+                                                    <td nowrap="nowrap">
+                                                        <form action="{{ route('data-tindakan.destroy', $d->id) }}"
+                                                            method="POST">
 
-                                                        <a href="javascript:;"
-                                                            class="btn btn-sm btn-info btn-icon edit_btn"
-                                                            id="{{$d->id}}" title=" Edit Data Pasien">
-                                                            <i class="la la-edit"></i>
-                                                        </a>
+                                                            <a href="javascript:;"
+                                                                class="btn btn-sm btn-info btn-icon edit_btn"
+                                                                id="{{ $d->id }}" title=" Edit Data Pasien">
+                                                                <i class="la la-edit"></i>
+                                                            </a>
 
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class="la la-trash">
-                                                            </i>
-                                                        </button>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger btn-icon"
+                                                                title="Delete"
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                                    class="la la-trash">
+                                                                </i>
+                                                            </button>
 
-                                                    </form>
-                                                </td>
+                                                        </form>
+                                                    </td>
 
 
 
-                                            </tr>
+                                                </tr>
 
-                                            @php
-                                            $nomor++;
-                                            @endphp
+                                                @php
+                                                    $nomor++;
+                                                @endphp
                                             @endforeach
 
 
@@ -383,7 +381,6 @@ License: You must have a valid license purchased only from themeforest(the above
             },
             "font-family": "Poppins"
         };
-
     </script>
 
 
@@ -413,7 +410,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
 
     <script>
-        $(document).on('click', '.edit_btn', function () {
+        $(document).on('click', '.edit_btn', function() {
 
             var id = $(this).attr('id');
             $('#edit').modal('show')
@@ -433,20 +430,18 @@ License: You must have a valid license purchased only from themeforest(the above
             }
 
 
-         
+
 
             $('#id').val(id);
             $('#header').val(data[1]);
             $('#nama').val(data[2]);
-            $('#biaya').val((data[3]));
+            $('#biaya').val(parseInt(data[3]));
 
 
         });
-
-      
     </script>
     <script src="assets/js/autonumeric.js"></script>
-    <script>
+    {{-- <script>
         $(function(){
     $('.uang').priceFormat({
         prefix: '',
@@ -460,7 +455,7 @@ function convertToRupiah(angka){
     for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
     return rupiah.split('',rupiah.length-1).reverse().join('');
 }
-    </script>
+    </script> --}}
 
 
 

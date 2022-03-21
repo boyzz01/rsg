@@ -2,6 +2,7 @@
     .select2-container {
         display: block;
     }
+
 </style>
 <div class="card-body">
     <div class="row mb-3">
@@ -20,32 +21,34 @@
             <label for="namatindakan" class="col-lg-2 col-form-label">Jenis
                 Tindakan</label>
             <div class="col-lg-4">
-                <select class="form-control select2" id="kt_select2_4" name="id_tindakan" disabled required>
+                <select class="form-control select2" id="kt_select2_4" name="id_tindakan" required>
                     <option label="Label"></option>
-                    @for ($i = 0 ; $i < count($tindakan) ; $i++) @if ($i==0) <optgroup
-                        label="{{ $tindakan[$i]->header }}">
-                        <option value="{{ $tindakan[$i]->id }}">{{ $tindakan[$i]->nama}}
-                        </option>
+                    @for ($i = 0; $i < count($tindakan); $i++)
+                        @if ($i == 0)
+                            <optgroup label="{{ $tindakan[$i]->header }}">
+                                <option value="{{ $tindakan[$i]->id }}" data-harga="{{ $tindakan[$i]->biaya }}">
+                                    {{ $tindakan[$i]->nama }}
+                                </option>
+                            @else
+                                @if ($tindakan[$i]->header == $tindakan[$i - 1]->header)
+                                    <option value="{{ $tindakan[$i]->id }}"
+                                        data-harga="{{ $tindakan[$i]->biaya }}">{{ $tindakan[$i]->nama }}
+                                    </option>
+                                @else
+                            <optgroup label="{{ $tindakan[$i]->header }}">
+                                <option value="{{ $tindakan[$i]->id }}" data-harga="{{ $tindakan[$i]->biaya }}">
+                                    {{ $tindakan[$i]->nama }}</option>
+                        @endif
+                    @endif
 
-                        @else
-                        @if ($tindakan[$i]->header==$tindakan[$i-1]->header)
-                        <option value="{{ $tindakan[$i]->id }}">{{ $tindakan[$i]->nama}}
-                        </option>
-                        @else
-                        <optgroup label="{{ $tindakan[$i]->header }}">
-                            <option value="{{ $tindakan[$i]->id }}">{{
-                                $tindakan[$i]->nama}}</option>
-                            @endif
-                            @endif
-
-                            @endfor
+                    @endfor
 
                 </select>
             </div>
 
-            <label for="jumlahtindakan" class="col-lg-2 col-form-label text-right">Elemen Gigi</label>
-            <div class="col-lg-4"><input type="text" class="form-control" disabled name="elemen" value=""
-                    id="jumlahtindakan" required="" autocomplete="off"></div>
+            <label for="elemen" class="col-lg-2 col-form-label text-right">Elemen Gigi</label>
+            <div class="col-lg-4"><input type="text" class="form-control" name="elemen" value="" id="elemen"
+                    required="" autocomplete="off"></div>
 
         </div>
         <div class="form-group row">
@@ -54,9 +57,9 @@
                 <textarea name="ket"></textarea>
 
             </div>
-            <label for="jumlahtindakan" class="col-lg-1 col-form-label text-right">Harga</label>
-            <div class="col-lg-2"><input type="number" class="form-control" disabled name="harga" value=""
-                    id="jumlahtindakan" required="" autocomplete="off"></div>
+            <label for="harga" class="col-lg-1 col-form-label text-right">Harga</label>
+            <div class="col-lg-2"><input type="number" class="form-control" name="harga" value="" id="harga"
+                    required=""></div>
             <div class="col-lg-2">
             </div>
         </div>
@@ -82,44 +85,44 @@
 
 
                 @php
-                $nomor = 1;
-                $item = 0;
-                $total =0;
+                    $nomor = 1;
+                    $item = 0;
+                    $total = 0;
                 @endphp
                 @foreach ($layanan as $d)
-                <tr id="tr{{$d->id_layanan}}">
+                    <tr id="tr{{ $d->id_layanan }}">
 
-                    <td nowrap="nowrap">
-                        <form action="" method="POST">
-
-
-                            @csrf
-                            @method('DELETE')
-                            <button disabled type="" class="btn btn-sm btn-danger btn-icon" title="Delete"> <i
-                                    class="la la-trash">
-                                </i>
-                            </button>
-
-                        </form>
-                    </td>
-                    <td>{{ $d->header }} ({{ $d->nama }})</td>
-                    <td>{{ $d->elemen }}</td>
-                    <td>{{ $d->ket }}</td>
-                    <td>{{ $d->harga }}</td>
-                    <td align="center">1</td>
+                        <td nowrap="nowrap">
+                            <form action="" method="POST">
 
 
-                    <td align="right">{{1*$d->harga }}</td>
+                                @csrf
+                                @method('DELETE')
+                                <button type="" class="btn btn-sm btn-danger btn-icon" title="Delete"> <i
+                                        class="la la-trash">
+                                    </i>
+                                </button>
+
+                            </form>
+                        </td>
+                        <td>{{ $d->header }} ({{ $d->nama }})</td>
+                        <td>{{ $d->elemen }}</td>
+                        <td>{{ $d->ket }}</td>
+                        <td>{{ $d->harga }}</td>
+                        <td align="center">1</td>
 
 
-                </tr>
+                        <td align="right">{{ 1 * $d->harga }}</td>
 
-                @php
-                $nomor++;
-                $item+=1;
-                $subtotal=1*$d->harga;
-                $total+=$subtotal;
-                @endphp
+
+                    </tr>
+
+                    @php
+                        $nomor++;
+                        $item += 1;
+                        $subtotal = 1 * $d->harga;
+                        $total += $subtotal;
+                    @endphp
                 @endforeach
 
             </tbody>
