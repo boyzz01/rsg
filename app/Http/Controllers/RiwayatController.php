@@ -49,8 +49,10 @@ class RiwayatController extends Controller
         //
         $biodata =DB::table('biodata_pasien')->where('id','=',$id)->first();
        
-        $riwayat =DB::select("SELECT * FROM `antrian_pasien` JOIN riwayat_medis JOIN invoice WHERE antrian_pasien.id_pasien = riwayat_medis.id_pasien  and antrian_pasien.id_pasien = invoice.id_pasien
-        AND riwayat_medis.id_pasien = $id");
+        $riwayat =DB::select("SELECT * FROM riwayat_medis JOIN antrian_pasien where antrian_pasien.id =riwayat_medis.id_trans and riwayat_medis.id_pasien=$id ");
+       
+        // -- $riwayat =DB::select("SELECT * FROM `antrian_pasien` JOIN riwayat_medis JOIN invoice WHERE antrian_pasien.id_pasien = riwayat_medis.id_pasien  and antrian_pasien.id_pasien = invoice.id_pasien
+        // --AND riwayat_medis.id_pasien = $id");
       
         return view('riwayat',['riwayat'=>$riwayat,'biodata'=>$biodata]);
     }

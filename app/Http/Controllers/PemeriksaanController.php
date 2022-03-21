@@ -44,6 +44,7 @@ class PemeriksaanController extends Controller
     
       
 
+      $url = "pemeriksaan/$id_trans/$id_pasien";
       $rm=DB::table('riwayat_medis')->where('id_trans','=',$id_trans)->first();
       $pemeriksaan=DB::table('pemeriksaan')->where('id_trans','=',$id_trans)->first();
       $antrian=DB::table('antrian_pasien')->where('id','=',$id_trans)->first();
@@ -58,6 +59,6 @@ class PemeriksaanController extends Controller
         $datagigi =DB::table('master_simbol_odontogram')->get();
         $tindakan = DB::table('master_tindakan')->get();
         $layanan =DB::table('layanan')->join('master_tindakan','layanan.id_tindakan','=','master_tindakan.id')->where('no_trans','=',$id_trans)->get();
-        return view('pemeriksaan_pasien',['antrian'=>$antrian,'invoice'=>$invoice,'rp'=>$rp,'rm'=>$rm,'pm'=>$pemeriksaan,'layanan'=>$layanan,'tindakan'=>$tindakan,'idtrans'=>$id_trans,'data'=>$data,'biodata'=>$biodata,'dataall'=>$dataall,'datagigi'=>$datagigi]);
+        return view('pemeriksaan_pasien',['url'=>$url,'antrian'=>$antrian,'invoice'=>$invoice,'rp'=>$rp,'rm'=>$rm,'pm'=>$pemeriksaan,'layanan'=>$layanan,'tindakan'=>$tindakan,'idtrans'=>$id_trans,'data'=>$data,'biodata'=>$biodata,'dataall'=>$dataall,'datagigi'=>$datagigi]);
     }
 }

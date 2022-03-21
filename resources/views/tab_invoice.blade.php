@@ -2,6 +2,7 @@
     .select2-container {
         display: block;
     }
+
 </style>
 <div class="card-body">
     <div class="row mb-3">
@@ -22,29 +23,31 @@
             <div class="col-lg-4">
                 <select class="form-control select2" id="kt_select2_4" name="id_tindakan" required>
                     <option label="Label"></option>
-                    @for ($i = 0 ; $i < count($tindakan) ; $i++) @if ($i==0) <optgroup
-                        label="{{ $tindakan[$i]->header }}">
-                        <option value="{{ $tindakan[$i]->id }}">{{ $tindakan[$i]->nama}}
-                        </option>
+                    @for ($i = 0; $i < count($tindakan); $i++)
+                        @if ($i == 0)
+                            <optgroup label="{{ $tindakan[$i]->header }}">
+                                <option value="{{ $tindakan[$i]->id }}" data-harga="{{ $tindakan[$i]->biaya }}">
+                                    {{ $tindakan[$i]->nama }}
+                                </option>
+                            @else
+                                @if ($tindakan[$i]->header == $tindakan[$i - 1]->header)
+                                    <option value="{{ $tindakan[$i]->id }}"
+                                        data-harga="{{ $tindakan[$i]->biaya }}">{{ $tindakan[$i]->nama }}
+                                    </option>
+                                @else
+                            <optgroup label="{{ $tindakan[$i]->header }}">
+                                <option value="{{ $tindakan[$i]->id }}" data-harga="{{ $tindakan[$i]->biaya }}">
+                                    {{ $tindakan[$i]->nama }}</option>
+                        @endif
+                    @endif
 
-                        @else
-                        @if ($tindakan[$i]->header==$tindakan[$i-1]->header)
-                        <option value="{{ $tindakan[$i]->id }}">{{ $tindakan[$i]->nama}}
-                        </option>
-                        @else
-                        <optgroup label="{{ $tindakan[$i]->header }}">
-                            <option value="{{ $tindakan[$i]->id }}">{{
-                                $tindakan[$i]->nama}}</option>
-                            @endif
-                            @endif
-
-                            @endfor
+                    @endfor
 
                 </select>
             </div>
 
-            <label for="jumlahtindakan" class="col-lg-2 col-form-label text-right">Elemen Gigi</label>
-            <div class="col-lg-4"><input type="text" class="form-control" name="elemen" value="" id="jumlahtindakan"
+            <label for="elemen" class="col-lg-2 col-form-label text-right">Elemen Gigi</label>
+            <div class="col-lg-4"><input type="text" class="form-control" name="elemen" value="" id="elemen"
                     required="" autocomplete="off"></div>
 
         </div>
@@ -54,10 +57,11 @@
                 <textarea name="ket"></textarea>
 
             </div>
-            <label for="jumlahtindakan" class="col-lg-1 col-form-label text-right">Harga</label>
-            <div class="col-lg-2"><input type="number" class="form-control" name="harga" value="" id="jumlahtindakan"
+            <label for="harga" class="col-lg-1 col-form-label text-right">Harga</label>
+            <div class="col-lg-2"><input type="number" class="form-control" name="harga" value="" id="harga"
                     required="" autocomplete="off"></div>
-            <div class="col-lg-2"><button type="submit" name="simpantindakan" class="btn btn-primary">Tambah</button>
+            <div class="col-lg-2"><button type="submit" name="simpantindakan"
+                    class="btn btn-primary">Tambah</button>
             </div>
         </div>
     </form>
@@ -82,48 +86,47 @@
 
 
                 @php
-                $nomor = 1;
-                $item = 0;
-                $total =0;
+                    $nomor = 1;
+                    $item = 0;
+                    $total = 0;
                 @endphp
                 @foreach ($layanan as $d)
-                <tr id="tr{{$d->id_layanan}}">
+                    <tr id="tr{{ $d->id_layanan }}">
 
-                    <td nowrap="nowrap">
-                        <form action="{{ route('tindakan.destroy', $d->id_layanan) }}" method="POST">
-
-
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger btn-icon" title="Delete"> <i
-                                    class="la la-trash">
-                                </i>
-                            </button>
-
-                        </form>
-                    </td>
-                    <td>{{ $d->header }} ({{ $d->nama }})</td>
-                    <td>{{ $d->elemen }}</td>
-                    <td>{{ $d->ket }}</td>
-                    <td>{{ number_format( $d->harga,
-                        0
-                        , ',' , '.' ); }}</td>
-                    <td align="center">1</td>
+                        <td nowrap="nowrap">
+                            <form action="{{ route('tindakan.destroy', $d->id_layanan) }}" method="POST">
 
 
-                    <td align="right">{{ number_format( $d->harga,
-                        0
-                        , ',' , '.' ); }}</td>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger btn-icon" title="Delete"> <i
+                                        class="la la-trash">
+                                    </i>
+                                </button>
+
+                            </form>
+                        </td>
+                        <td>{{ $d->header }} ({{ $d->nama }})</td>
+                        <td>{{ $d->elemen }}</td>
+                        <td>{{ $d->ket }}</td>
+                        <td>{{ number_format($d->harga, 0, ',', '.') }}
+                        </td>
+                        <td align="center">1</td>
 
 
-                </tr>
+                        <td align="right">
+                            {{ number_format($d->harga, 0, ',', '.') }}
+                        </td>
 
-                @php
-                $nomor++;
-                $item+=1;
-                $subtotal=1*$d->harga;
-                $total+=$subtotal;
-                @endphp
+
+                    </tr>
+
+                    @php
+                        $nomor++;
+                        $item += 1;
+                        $subtotal = 1 * $d->harga;
+                        $total += $subtotal;
+                    @endphp
                 @endforeach
 
             </tbody>
@@ -140,9 +143,9 @@
                 <tr>
                     <td colspan="6" align="right"><strong>Total Harus
                             Dibayar</strong></td>
-                    <td align="right"><strong>{{ number_format( $total,
-                            0
-                            , ',' , '.' ); }}</strong></td>
+                    <td align="right">
+                        <strong>{{ number_format($total, 0, ',', '.') }}</strong>
+                    </td>
                 </tr>
 
                 {{-- <tr>
@@ -160,7 +163,7 @@
                 </tr> --}}
             </tbody>
         </table>
-        <form action="{{ route('invoice.update',1) }}" method="post" name="form1" autocomplete="off">
+        <form action="{{ route('invoice.update', 1) }}" method="post" name="form1" autocomplete="off">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <input type="hidden" name="id_invoice" value="{{ $invoice->id_invoice }}" />
