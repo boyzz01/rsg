@@ -314,7 +314,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
-                            Odontogram Pasien {{ $biodata->norm }} / {{ $biodata->nama }}
+                            Odontogram Pasien {{ $biodata->id_pasien }} / {{ $biodata->nama }}
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
