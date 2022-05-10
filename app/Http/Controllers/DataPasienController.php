@@ -49,7 +49,13 @@ class DataPasienController extends Controller
     public function store(Request $request)
     {
        
-         
+        
+        $norm = DB::table('no_rm')->where('id','=',1)->first();
+        $ldate = date('m-Y');
+        
+        $request['norm']= $ldate.'-'.str_pad($norm->no, 3, '0', STR_PAD_LEFT);;
+        $temp = $norm->no+1;
+        DB::update("update no_rm set no = $temp where id = 1");
         $tgl = explode('/', $request->tgl_lahir);
         $request['tgl_lahir'] = $tgl[2].'-'.$tgl[0].'-'.$tgl[1];
         /// redirect jika sukses menyimpan data

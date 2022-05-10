@@ -24,8 +24,7 @@
 
                         <input type="hidden" name="status" value="1">
                         <input type="hidden" id="idc" name="id_pasien">
-                        <label for="idpasiens" class="col-sm-3 col-form-label">ID
-                            Pasien</label>
+                        <label for="idpasiens" class="col-sm-3 col-form-label">No Rekam Medis</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" name="idpasien" id="idpasienc" disabled="disabled"
                                 required="" placeholder="" />
@@ -33,8 +32,8 @@
                     </div>
                     <div class="form-group row"><label for="nmpasien" class="col-sm-3 col-form-label">Nama</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" disabled="disabled" placeholder="" name="namapasien"
-                                id="namapasienc" />
+                            <input type="text" class="form-control" disabled="disabled" placeholder=""
+                                name="namapasien" id="namapasienc" />
                         </div>
                     </div>
                     <div class="form-group row"><label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
@@ -46,20 +45,21 @@
                     <div class="form-group row"><label for="tgl" class="col-sm-3 col-form-label">Tanggal</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" disabled="disabled" placeholder=""
-                                value="{{ date('Y-m-d'); }}" />
+                                value="{{ date('Y-m-d') }}" />
 
                         </div>
                     </div>
                     <div class="form-group row"><label for="waktu" class="col-sm-3 col-form-label">Waktu</label>
                         <div class="col-sm-9"><input type="time-local" class="form-control onlyread" name="waktu"
-                                id="waktu" value="{{ date('H:i:s'); }}" disabled="disabled" required=""
+                                id="waktu" value="{{ date('H:i:s') }}" disabled="disabled" required=""
                                 autocomplete="off">
                         </div>
                     </div>
-                    <input type="hidden" name="mulai_antri" value="{{ date('Y-m-d H:i:s');}}">
+                    <input type="hidden" name="mulai_antri" value="{{ date('Y-m-d H:i:s') }}">
                     <div class="form-group row"><label for="keluhan" class="col-sm-3 col-form-label">Keluhan</label>
-                        <div class="col-sm-9"><textarea class="form-control" name="keluhan" id="keluhan" rows="2"
-                                required=""></textarea></div>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="keluhan" id="keluhan" rows="2" required=""></textarea>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12 text-right">
@@ -107,35 +107,35 @@
 
 
                         @php
-                        $nomor = 1;
+                            $nomor = 1;
                         @endphp
                         @foreach ($antrian as $d)
-                        <tr id="tr{{$d->id}}">
-                            <td>{{ $nomor }}</td>
-                            <td>{{ $d->id }}</td>
-                            <td>{{ $d->nama }}</td>
-                            <td>{{ $d->mulai_antri }}</td>
+                            <tr id="tr{{ $d->id }}">
+                                <td>{{ $nomor }}</td>
+                                <td>{{ $d->id_pasien }}</td>
+                                <td>{{ $d->nama }}</td>
+                                <td>{{ $d->mulai_antri }}</td>
 
-                            <td nowrap="nowrap">
-                                @if ($d->status=="1")
-                                <span class="label label-lg font-weight-bold label-light-primary label-inline">Sedang
-                                    Antri</span>
+                                <td nowrap="nowrap">
+                                    @if ($d->status == '1')
+                                        <span
+                                            class="label label-lg font-weight-bold label-light-primary label-inline">Sedang
+                                            Antri</span>
+                                    @elseif ($d->status == '2')
+                                        <span
+                                            class="label label-lg font-weight-bold label-light-success label-inline">Dalam
+                                            Pemeriksaan</span>
+                                    @elseif ($d->status == '3')
+                                        <span
+                                            class="label label-lg font-weight-bold label-light-danger label-inline">Selesai
+                                            Diperiksa</span>
+                                    @endif
+                                </td>
+                            </tr>
 
-                                @elseif ($d->status=="2")
-                                <span class="label label-lg font-weight-bold label-light-success label-inline">Dalam
-                                    Pemeriksaan</span>
-
-                                @elseif ($d->status=="3")
-                                <span class="label label-lg font-weight-bold label-light-danger label-inline">Selesai
-                                    Diperiksa</span>
-
-                                @endif
-                            </td>
-                        </tr>
-
-                        @php
-                        $nomor++;
-                        @endphp
+                            @php
+                                $nomor++;
+                            @endphp
                         @endforeach
 
 

@@ -45,13 +45,13 @@ class AntrianController extends Controller
         $user = DB::table('antrian_pasien')->where('id_pasien','=',$request->id_pasien)->where('status','!=','3')->first();
       
         if ($user === null) {
-            $norm = DB::table('no_rm')->where('id','=',1)->first();
-            $ldate = date('m-Y');
+            // $norm = DB::table('no_rm')->where('id','=',1)->first();
+            // $ldate = date('m-Y');
             
-            $request['id']= $ldate.'-'.str_pad($norm->no, 3, '0', STR_PAD_LEFT);;
+            // $request['id']= $ldate.'-'.str_pad($norm->no, 3, '0', STR_PAD_LEFT);;
             Antrian::create($request->all());
-            $temp = $norm->no+1;
-            DB::update("update no_rm set no = $temp where id = 1");
+            //$temp = $norm->no+1;
+           // DB::update("update no_rm set no = $temp where id = 1");
             return redirect()->back()
             ->with('success','Data berhasil ditambahkan');
         }else{

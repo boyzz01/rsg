@@ -52,10 +52,10 @@ class PemeriksaanController extends Controller
       $invoice = DB::table('invoice')->where('id_trans','=',$id_trans)->first();
         $id = $id_pasien;
       //  $data = DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram WHERE odontogram_pasien.kondisi = master_simbol_odontogram.id AND odontogram_pasien.id = $id");
-      $data =DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram WHERE odontogram_pasien.kondisi = master_simbol_odontogram.id AND odontogram_pasien.id_pasien = 9 ORDER BY odontogram_pasien.id ASC");
+      $data =DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram ON odontogram_pasien.kondisi = master_simbol_odontogram.id WHERE odontogram_pasien.id_pasien = '$id' ORDER BY odontogram_pasien.id ASC");
       //$data =DB::select("SELECT * FROM odontogram_pasien JOIN master_simbol_odontogram WHERE odontogram_pasien.kondisi = master_simbol_odontogram.id AND odontogram_pasien.id_pasien = $id AND odontogram_pasien.id IN (SELECT MAX(odontogram_pasien.id) FROM odontogram_pasien GROUP BY gigi)");
-        $biodata =DB::table('biodata_pasien')->where('id','=',$id)->first();
-        $dataall =DB::table('odontogram_pasien')->join('master_simbol_odontogram','odontogram_pasien.kondisi','=','master_simbol_odontogram.id')->where('id_pasien','=',$id)->orderByDesc('odontogram_pasien.id')->get()->toArray(); 
+        $biodata =DB::table('biodata_pasien')->where('norm','=',$id)->first();
+        $dataall =DB::table('odontogram_pasien')->join('master_simbol_odontogram','odontogram_pasien.kondisi','=','master_simbol_odontogram.id')->where('id_pasien','=',"$id")->orderByDesc('odontogram_pasien.id')->get()->toArray(); 
         $datagigi =DB::table('master_simbol_odontogram')->get();
         $tindakan = DB::table('master_tindakan')->get();
         $layanan =DB::table('layanan')->join('master_tindakan','layanan.id_tindakan','=','master_tindakan.id')->where('no_trans','=',$id_trans)->get();

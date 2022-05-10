@@ -14,6 +14,7 @@ class Pasien extends Authenticatable
     public $timestamps = false;
     protected $fillable = [
         'id',
+        'norm',
         'nama',
         'usia',
         'alamat',

@@ -78,13 +78,22 @@ class InvoiceController extends Controller
 
             $id_invoice = $request->id_invoice;
             $data = Invoice::find($id_invoice);
-            $data->update($request->all());
-
-
-          
+            $data->update($request->all());          
             DB::update("update antrian_pasien set status='3'  where id = '$request->id_trans'");
             return redirect('/')
             ->with('success','Pasien Selesai Diperiksa');
+
+            // if($request->total>0){
+            //     $id_invoice = $request->id_invoice;
+            //     $data = Invoice::find($id_invoice);
+            //     $data->update($request->all());          
+            //     DB::update("update antrian_pasien set status='3'  where id = '$request->id_trans'");
+            //     return redirect('/')
+            //     ->with('success','Pasien Selesai Diperiksa');
+            // }else{
+            //     return redirect()->back()->with('error','Mohon Isi Tindakan Terlebih dahulu');
+            // }
+          
         }
 
         if($pil==2){

@@ -16,7 +16,7 @@ class PrintController extends Controller
         $inv = date('Ymd',$time);
         $invoice=DB::table('invoice')->where('id_trans','=',$id)->first();
         $data =DB::table('layanan')->join('master_tindakan','layanan.id_tindakan','=','master_tindakan.id')->where('no_trans','=',$id)->get();
-        $biodata=DB::table('biodata_pasien')->where('id','=',$data[0]->id_pasien)->first();
+        $biodata=DB::table('biodata_pasien')->where('norm','=',$data[0]->id_pasien)->first();
         return view('print_invoice',['antri'=>$antri,'invoice'=>$invoice,'inv'=>$inv,'tgl'=>$newformat,'biodata'=>$biodata,'layanan'=>$data,'id'=>$id]);
     }
 }

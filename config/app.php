@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://edentalklinik.com'),
+    'url' => env('APP_URL', 'http://edentalklinik.com/klinik'),
 
     'asset_url' => env('ASSET_URL', null),
 

@@ -12,7 +12,7 @@ class AddRekamMedisController extends Controller
     //
     function index($idpasien,$idgigi){
        
-        $biodata =DB::table('biodata_pasien')->where('id','=',$idpasien)->first();
+        $biodata =DB::table('biodata_pasien')->where('norm','=',$idpasien)->first();
         $datagigi =DB::table('master_simbol_odontogram')->get();
         $data =DB::table('odontogram_pasien')->join('master_simbol_odontogram','odontogram_pasien.kondisi','=','master_simbol_odontogram.id')->where('id_pasien','=',$idpasien)->where('gigi','=',$idgigi)->orderByDesc('odontogram_pasien.id')->get()->toArray(); 
         return view('add_rekam_medis',['biodata'=>$biodata,'idgigi'=>$idgigi,'datagigi'=>$datagigi,'data'=>$data]);

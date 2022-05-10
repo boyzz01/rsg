@@ -8,8 +8,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="card-label">
-                            Kondisi Gigi Pasien {{ $biodata->id }} ({{ $biodata->nama
-                            }}) / Gigi : <span id=judulgigi></span>
+                            Kondisi Gigi Pasien {{$biodata->norm}} 
+                            ({{ $biodata->nama}}) / Gigi : <span id=judulgigi></span>
                             <span class="text-muted pt-2 font-size-sm d-block"></span>
                         </h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -17,7 +17,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
+ 
+                        
 
                         <div class="card-body">
 
@@ -62,7 +63,7 @@
                             </div>
                             <input type="hidden" name="pemeriksa" value="{{ $antrian->dokter_p}}" />
                             <input type="hidden" name="gigi" id="gigiid" value="" />
-                            <input type="hidden" name="id_pasien" value="{{ $biodata->id }}" />
+                            <input type="hidden" name="id_pasien" value="{{ $biodata->norm }}" />
 
                         </div>
                     </div>

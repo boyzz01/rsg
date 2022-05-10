@@ -108,7 +108,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <tr>
                                                 <th>No</th>
                                                 <th>Aksi</th>
-                                                <th style="width:5%">ID Pasien</th>
+                                                <th style="width:5%">No. Rekam Medis</th>
                                                 <th>Nama</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>Pekerjaan</th>
@@ -121,56 +121,58 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                                             @php
-                                            $nomor = 1;
+                                                $nomor = 1;
                                             @endphp
                                             @foreach ($data as $d)
-                                            <tr id="tr{{$d->id}}">
-                                                <td style=" width:5%">{{ $nomor }}</td>
-                                                <td nowrap="nowrap">
-                                                    <form action="{{ route('pasien.destroy', $d->id) }}" method="POST">
+                                                <tr id="tr{{ $d->id }}">
+                                                    <td style=" width:5%">{{ $nomor }}</td>
+                                                    <td nowrap="nowrap">
+                                                        <form action="{{ route('pasien.destroy', $d->id) }}"
+                                                            method="POST">
 
-                                                        <a href="javascript:;"
-                                                            class="btn btn-sm btn-info btn-icon edit_btn"
-                                                            id="{{$d->id}}" title=" Edit Data Pasien"
-                                                            data-tgl="{{ $d->tgl_lahir }}">
-                                                            <i class="la la-edit"></i>
-                                                        </a>
+                                                            <a href="javascript:;"
+                                                                class="btn btn-sm btn-info btn-icon edit_btn"
+                                                                id="{{ $d->id }}" title=" Edit Data Pasien"
+                                                                data-tgl="{{ $d->tgl_lahir }}">
+                                                                <i class="la la-edit"></i>
+                                                            </a>
 
-                                                        <a href="{{ route('riwayat-medis.show',$d->id) }}"
-                                                            class="btn btn-sm btn-success btn-icon"
-                                                            title="Riwayat Medis">
-                                                            <i class="fas fa-history"></i>
-                                                        </a>
+                                                            <a href="{{ route('riwayat-medis.show', $d->id) }}"
+                                                                class="btn btn-sm btn-success btn-icon"
+                                                                title="Riwayat Medis">
+                                                                <i class="fas fa-history"></i>
+                                                            </a>
 
-                                                        <a href="{{ url('/') }}/odontogram/{{ $d->id }}"
-                                                            class="btn btn-sm btn-success btn-icon" title="Odontogram">
-                                                            <i class="fas fa-teeth-open"></i>
-                                                        </a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            title="Delete"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class="la la-trash">
-                                                            </i>
-                                                        </button>
+                                                            <a href="{{ url('/') }}/odontogram/{{ $d->id }}"
+                                                                class="btn btn-sm btn-success btn-icon"
+                                                                title="Odontogram">
+                                                                <i class="fas fa-teeth-open"></i>
+                                                            </a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger btn-icon"
+                                                                title="Delete"
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
+                                                                    class="la la-trash">
+                                                                </i>
+                                                            </button>
 
-                                                    </form>
-                                                </td>
-                                                <td>{{ $d->id }}</td>
-                                                <td>{{ $d->nama }}</td>
+                                                        </form>
+                                                    </td>
+                                                    <td>{{ $d->id }}</td>
+                                                    <td>{{ $d->nama }}</td>
 
-                                                <td>{{ $d->jk }}</td>
-                                                <td>{{ $d->pekerjaan }}</td>
-                                                <td>{{ $d->hp }}</td>
-                                                <td>{{ $d->alamat }}</td>
+                                                    <td>{{ $d->jk }}</td>
+                                                    <td>{{ $d->pekerjaan }}</td>
+                                                    <td>{{ $d->hp }}</td>
+                                                    <td>{{ $d->alamat }}</td>
 
 
-                                            </tr>
+                                                </tr>
 
-                                            @php
-                                            $nomor++;
-                                            @endphp
+                                                @php
+                                                    $nomor++;
+                                                @endphp
                                             @endforeach
 
 
@@ -309,45 +311,45 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="public/assets/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
 
     <script>
-        $(document).on('click', '.edit_btn', function () {
+        $(document).on('click', '.edit_btn', function() {
 
-        var id = $(this).attr('id');
-        $('#updateModal').modal('show')
-
-
-        // var data = $("tr"+id).children("td").map(function() {
-        //    return $(this).text();
-        // }).get();
-
-        //       console.log('#tr'+id);
-        var data = Array();
-        var tr = document.getElementById("tr" + id);
-        var td = tr.getElementsByTagName("td");
-        for (var i = 0; i < td.length; i++) {
-        data[i] = td[i].innerHTML;
-      //  console.log(data[i]);
-        }
+            var id = $(this).attr('id');
+            $('#updateModal').modal('show')
 
 
-        var tgl = $(this).attr('data-tgl')
-        // console.log(data);
+            // var data = $("tr"+id).children("td").map(function() {
+            //    return $(this).text();
+            // }).get();
 
-        $('#idpasien').val(id);
-       
-        var datatgl = tgl.split('-');
-        $('#namapasien').val(data[3]);
-        $('.picker').datepicker('setDate', datatgl[1]+'/'+datatgl[2]+'/'+datatgl[0]);
-        $('#pekerjaan').val(data[5]);
-        $('#hp').val(data[6]);
-        $('#alamat').val(data[7]);
+            //       console.log('#tr'+id);
+            var data = Array();
+            var tr = document.getElementById("tr" + id);
+            var td = tr.getElementsByTagName("td");
+            for (var i = 0; i < td.length; i++) {
+                data[i] = td[i].innerHTML;
+                //  console.log(data[i]);
+            }
 
-        if(data[4]=='Laki-Laki'){
-                    $("#check1").attr("checked", true);
-                    $("#check2").attr("checked", false);
-                }else{
-                    $("#check1").attr("checked", false);
-                    $("#check2").attr("checked", true);
-                }
+
+            var tgl = $(this).attr('data-tgl')
+            // console.log(data);
+
+            $('#idpasien').val(id);
+
+            var datatgl = tgl.split('-');
+            $('#namapasien').val(data[3]);
+            $('.picker').datepicker('setDate', datatgl[1] + '/' + datatgl[2] + '/' + datatgl[0]);
+            $('#pekerjaan').val(data[5]);
+            $('#hp').val(data[6]);
+            $('#alamat').val(data[7]);
+
+            if (data[4] == 'Laki-Laki') {
+                $("#check1").attr("checked", true);
+                $("#check2").attr("checked", false);
+            } else {
+                $("#check1").attr("checked", false);
+                $("#check2").attr("checked", true);
+            }
 
         });
     </script>

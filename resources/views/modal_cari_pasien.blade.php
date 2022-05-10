@@ -18,7 +18,7 @@
                             <tr role="row">
                                 <th>No</th>
 
-                                <th style="width:5%">ID Pasien</th>
+                                <th style="width:5%">No Rekam Medis</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
 
@@ -32,26 +32,26 @@
 
 
                             @php
-                            $nomor = 1;
+                                $nomor = 1;
                             @endphp
                             @foreach ($data as $d)
-                            <tr role="row" id="tr{{$d->id}}">
-                                <td style=" width:5%">{{ $nomor }}</td>
+                                <tr role="row" id="tr{{ $d->id }}">
+                                    <td style=" width:5%">{{ $nomor }}</td>
 
-                                <td>{{ $d->id }}</td>
-                                <td>{{ $d->nama }}</td>
+                                    <td>{{ $d->norm }}</td>
+                                    <td>{{ $d->nama }}</td>
 
-                                <td>{{ $d->jk }}</td>
-                                <td>{{ $d->alamat }}</td>
-                                <td>{{ $d->hp }}</td>
+                                    <td>{{ $d->jk }}</td>
+                                    <td>{{ $d->alamat }}</td>
+                                    <td>{{ $d->hp }}</td>
 
 
 
-                            </tr>
+                                </tr>
 
-                            @php
-                            $nomor++;
-                            @endphp
+                                @php
+                                    $nomor++;
+                                @endphp
                             @endforeach
 
 

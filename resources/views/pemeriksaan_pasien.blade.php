@@ -314,7 +314,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div
                             class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                             <!--begin::Info-->
-                            Odontogram Pasien {{ $biodata->id }} / {{ $biodata->nama }}
+                            Odontogram Pasien {{ $biodata->norm }} / {{ $biodata->nama }}
                             <!--end::Info-->
                             <!--begin::Toolbar-->
 
@@ -639,8 +639,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
             var data = @json($data);
 
+            console.log(data);
 
             for (var i = 0; i < data.length; i++) {
+            
                 var gigi = data[i]['gigi'].split("-");
                 var tes = document.getElementById(gigi[0]);
                 var temp = tes.querySelector('#' + gigi[1]);
@@ -671,7 +673,7 @@ License: You must have a valid license purchased only from themeforest(the above
             });
 
             $('polygon').click(function(evt) {
-                const idpasien = {{ $biodata->id }};
+                const idpasien = {{ $biodata->norm }};
                 var baseurl = '{{ url('') }}';
                 var sector = $(evt.target);
                 var judul = document.getElementById('judulgigi');
